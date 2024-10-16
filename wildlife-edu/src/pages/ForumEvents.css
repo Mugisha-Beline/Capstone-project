@@ -1,0 +1,279 @@
+/* Main container for forum and events */
+.forum-events {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeIn 2s ease-in-out; /* Page-wide fade-in animation */
+}
+
+/* Forum Section */
+.forum-section {
+  margin-bottom: 50px;
+}
+
+/* Forum Cards Section */
+.forum-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.forum-card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forum-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.forum-card-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.forum-card-content {
+  flex: 1;
+}
+
+.forum-card-content h4 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.forum-card-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.forum-card-content a {
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.forum-card-content a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Forum button */
+.join-forum-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.join-forum-button:hover {
+  background-color: #218838;
+}
+
+/* Events Section */
+.events-section {
+  margin-top: 50px;
+}
+
+.event-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.event-card {
+  width: 30%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.event-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.event-card strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.event-card p {
+  margin: 5px 0;
+}
+
+/* Events button */
+.view-events-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3C5916;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.view-events-button:hover {
+  background-color: #333;
+}
+
+/* Footer */
+.footer {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo img {
+  width: 100px;
+}
+
+.footer-links a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.social-media {
+  display: flex;
+  gap: 10px;
+}
+
+.social-media a {
+  display: inline-block;
+}
+
+.social-icon {
+  width: 25px;
+  height: 25px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cards Animation */
+.forum-card,
+.event-card {
+  animation: cardFadeIn 2s ease-in-out;
+}
+
+@keyframes cardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Footer Section */
+.footer-logo-image, .footer-links, .social-media {
+  opacity: 0;
+  transform: translateY(30px); /* Initial off-screen position */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
+}
+
+.footer-logo-image.show, .footer-links.show, .social-media.show {
+  opacity: 1;
+  transform: translateY(0); /* Slide into view */
+}
+/* Footer Section */
+.footer {
+  text-align: center; /* Center footer text */
+  padding: 20px 0; /* Padding for footer */
+  background-color: #f1f1f1; /* Light background color */
+  margin-top: 20px;
+}
+
+.footer-links {
+  margin-top: 10px; /* Space above links */
+}
+
+.footer-links a {
+  margin: 0 15px; /* Space between links */
+  color: #f8f8f8; /* Link color */
+}
+/* src/pages/Home.css */
+
+/* Footer Section */
+.footer {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between logo and links */
+  align-items: center; /* Center items vertically */
+  padding: 20px; /* Padding for footer */
+  background-color: #433D3D; /* Light background color */
+}
+
+.footer-logo {
+  flex: 1; /* Allow logo to take its own space */
+}
+
+.footer-logo-image {
+  max-width: 100px; /* Limit logo size */
+}
+
+.footer-links {
+  flex: 2; /* Center area for links */
+  text-align: center; /* Center text */
+}
+
+.footer-links a {
+  margin: 0 15px; /* Space between links */
+  color: #fdfdfd; /* Link color */
+}
+
+.social-media {
+  flex: 1; /* Space for social media icons */
+  display: flex; /* Use flexbox for social icons */
+  justify-content: flex-end; /* Align icons to the right */
+}
+
+.social-icon {
+  width: 30px; /* Set size for social icons */
+  margin-left: 10px; /* Space between icons */
+}

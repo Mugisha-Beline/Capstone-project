@@ -1,0 +1,157 @@
+/* Container for all events */
+.all-events {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeIn 2s ease-in-out; /* Adding a smooth fade-in animation */
+}
+
+/* Page Title */
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+  color: #333;
+  font-weight: bold;
+  animation: slideInDown 2s ease-in-out; /* Slide in animation for the title */
+}
+
+/* Events List */
+.events-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+/* Individual Event Cards */
+.event-item {
+  width: 100%;
+  max-width: 200px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 2s ease-in-out; /* Fade-in and slide-up animation */
+}
+
+/* Hover Effects for Cards */
+.event-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Event Images */
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Event Details */
+.event-details {
+  text-align: center;
+}
+
+.event-details strong {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #3C5916;
+}
+
+.event-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Back Button */
+.back-button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 25px;
+  background-color: #3C5916;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  max-width: 200px;
+}
+
+.back-button:hover {
+  background-color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .events-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .event-item {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-item {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+/* Footer Section */
+.footer-logo-image, .footer-links, .social-media {
+  opacity: 0;
+  transform: translateY(30px); /* Initial off-screen position */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
+}
+
+.footer-logo-image.show, .footer-links.show, .social-media.show {
+  opacity: 1;
+  transform: translateY(0); /* Slide into view */
+}

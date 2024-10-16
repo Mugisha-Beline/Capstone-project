@@ -1,0 +1,62 @@
+/* src/components/Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Align items on both ends */
+  align-items: center;            /* Center items vertically */
+  padding: 10px 20px;            /* Add some padding */
+  background-color: #3C5916;     /* Change to your desired background color */
+  color: white;                   /* Text color */
+}
+
+.navbar-logo img {
+  width: 100px; 
+  border-radius: 60px;                
+}
+
+.navbar-links {
+  list-style: none;               /* Remove default list styling */
+  display: flex;                  /* Use flexbox for layout */
+  align-items: center;            /* Center items vertically */
+  gap: 20px;                      /* Space between links */
+}
+
+.navbar-links li {
+  font-size: 18px;                /* Font size for links */
+}
+
+.navbar-links a {
+  text-decoration: none;          /* Remove underline from links */
+  color: white;                   /* Default link color */
+  padding: 10px 15px;             /* Add padding to make links easier to click */
+  transition: color 0.3s, background-color 0.3s; /* Smooth transition for hover */
+}
+
+.navbar-links a:hover {
+  background-color: white;        /* Background color on hover */
+  color: #3C5916;                 /* Change link text color on hover */
+  border-radius: 4px;             /* Rounded corners on hover */
+}
+
+/* Special styling for Donate button */
+.navbar-links a[href="/donate"] {
+  background-color: #021000;      /* Donate button background */
+  color: white;                   /* White text for Donate */
+  border-radius: 5px;             /* Rounded corners */
+  padding: 10px 20px;             /* Extra padding for Donate button */
+  font-weight: bold;              /* Bold text */
+  text-transform: uppercase;      /* Uppercase text */
+  transition: all 0.3s ease;
+}
+
+.navbar-links a[href="/donate"]:hover {
+  background-color: #021000;      /* Keep Donate button the same on hover */
+  color: white;                   /* Text color remains white on hover */
+}
+
+/* Search box styling */
+.search-box {
+  padding: 5px;                   /* Padding for search input */
+  border-radius: 5px;             /* Rounded corners */
+  border: 1px solid #ccc;         /* Border styling */
+  font-size: 14px;                /* Font size for the input */
+}
