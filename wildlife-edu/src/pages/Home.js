@@ -29,7 +29,7 @@ const About = () => {
         <div className="background-section">
   <div className="content">
     <h1>
-      Welcome to Wildlife EDU, a platform dedicated to educating and engaging individuals in the importance of wildlife conservation.
+      Welcome to WildlifEDU, a platform dedicated to educating and engaging individuals in the importance of wildlife conservation.
     </h1>
   </div>
   <Link to="/all-events" className="cta-button">Upcoming Events</Link>
@@ -53,7 +53,7 @@ const About = () => {
 
       {/* Educational Content Section */}
       <section className="educational-content about-fade-in-up">
-        <h2>Study with us at WildlifeEDU!</h2>
+        <h2>Study with us at WildlifEDU!</h2>
         <div className="content-cards">
           <div className="content-card about-fade-in-left">
             <img src="/conservation.jpg" alt="Conservation 101" className="card-image" />

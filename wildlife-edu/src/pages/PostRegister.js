@@ -9,7 +9,7 @@ const PostRegister = () => {
     <div className="post-registerpage">
     <div className="registered">
     <div className="post-register-container">
-      <h2>Welcome to Wildlife EDU!</h2>
+      <h2>Welcome to WildlifEDU!</h2>
       <p>Registered successfully!</p>
       <p>Congratulations <span role="img" aria-label="celebration">🎉</span></p>
       <div className="post-register-actions">
