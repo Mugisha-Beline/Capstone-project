@@ -2,7 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css'; 
-import './Donate.css'; // Import the CSS for styling
+import './About.css';
+import './Donate.css';
 
 const Payment = () => {
   const paymentOptions = [
@@ -31,23 +32,23 @@ const Payment = () => {
             <img src={option.icon} alt={option.name} className="payment-icon" />
             <h3>{option.name}</h3>
             <p>{option.description}</p>
-            <Link to="/thank-you" className="pay-button">Choose</Link>
+            <Link to="/Donate" className="pay-button">Choose</Link>
           </div>
         ))}
       </div>
       </div>
     </div>
     {/* Footer Section */}
-    <footer className="footer">
+    <footer className="footer about-fade-in-up">
         <div className="footer-logo">
-          <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
+          <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image about-fade-in-up" />
         </div>
-        <div className="footer-links">
+        <div className="footer-links about-fade-in-up">
           <Link to="/Donate">Do you want to support us?</Link>
           <Link to="/Privacy">Privacy Policy</Link>
           <Link to="/Terms">Terms of Service</Link>
         </div>
-        <div className="social-media">
+        <div className="social-media about-fade-in-up">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
             <img src="/facebook.jpg" alt="Facebook" className="social-icon" />
           </a>
@@ -59,7 +60,7 @@ const Payment = () => {
           </a>
         </div>
       </footer>
-      </div>
+    </div>
   );
 };
 

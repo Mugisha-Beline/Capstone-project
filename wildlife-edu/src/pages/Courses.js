@@ -1,79 +1,34 @@
-// src/pages/Courses.js
-import React, { useState } from 'react';
+// src/components/Courses/Courses.js
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css'; 
 import './Courses.css';
+import { getAllCourses, getUserCourses } from './utils/api';
 
 const Courses = () => {
   const [activeTab, setActiveTab] = useState('ongoing');
+  const [courses, setCourses] = useState([]);
+  const [userCourses, setUserCourses] = useState([]);
 
-  const courses = {
-    finished: [
-      {
-        id: 1,
-        title: "Wildlife Conservation 101",
-        description: "Learn the fundamentals of wildlife conservation.",
-        image: "/course1.jpg",
-      },
-      {
-        id: 2,
-        title: "Forest Ecosystems",
-        description: "Explore the complexities of forest ecosystems.",
-        image: "/course2.jpg",
-      },
-    ],
-    ongoing: [
-      {
-        id: 3,
-        title: "Endangered Species Protection",
-        description: "Discover strategies to protect endangered species.",
-        image: "/course2.jpg",
-      },
-      {
-        id: 4,
-        title: "Sustainable Practices in Conservation",
-        description: "Explore sustainable practices for wildlife conservation.",
-        image: "/course3.jpg",
-      },
-      {
-        id: 5,
-        title: "Climate Change Impact",
-        description: "Understand the effects of climate change on wildlife.",
-        image: "/course6.jpg",
-      },
-    ],
-    unstarted: [
-      {
-        id: 6,
-        title: "Marine Life Conservation",
-        description: "Understand the challenges facing marine ecosystems.",
-        image: "/course4.jpg",
-      },
-      {
-        id: 7,
-        title: "Conservation Biology",
-        description: "An in-depth look at conservation biology principles.",
-        image: "/course7.jpg",
-      },
-      {
-        id: 8,
-        title: "Biodiversity and Conservation",
-        description: "Study the importance of biodiversity in ecosystems.",
-        image: "/course8.jpg",
-      },
-    ],
+  // Fetch all courses and user's progress when the component mounts
+  useEffect(() => {
+    getAllCourses().then(data => setCourses(data.courses));
+    getUserCourses().then(data => setUserCourses(data.user_courses));
+  }, []);
+
+  // Filter courses based on the active tab (ongoing, finished, unstarted)
+  const getFilteredCourses = () => {
+    if (activeTab === 'all') return courses;
+    if (activeTab === 'ongoing') return userCourses.filter(c => c.progress < 100);
+    if (activeTab === 'finished') return userCourses.filter(c => c.progress === 100);
+    if (activeTab === 'unstarted') return courses.filter(c => !userCourses.some(uc => uc.course === c.title));
+    return [];
   };
 
-  const allCourses = [...courses.finished, ...courses.ongoing, ...courses.unstarted];
-
   return (
-    <div className="coursespages">
     <div className="courses-page">
       <aside className="sidebar">
-        <ul><h2>WildlifEDU courses</h2>
+        <h2>WildlifEDU Courses</h2>
         <img src="/profile.jpg" alt="profile" className="profile-image" />
-        <h2>Dashboard</h2>
-        </ul>
         <ul>
           <li onClick={() => setActiveTab('all')} className={activeTab === 'all' ? 'active' : ''}>
             All Courses
@@ -88,8 +43,7 @@ const Courses = () => {
             Unstarted Courses
           </li>
         </ul>
-        <ul><Link to="/settings" className="cta-button">Settings</Link>
-          </ul>
+        <Link to="/settings" className="cta-button">Settings</Link>
       </aside>
 
       <main className="courses-content">
@@ -97,42 +51,23 @@ const Courses = () => {
           <h1>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Courses</h1>
           <Link to="/add-course" className="add-course-button">Add New Course</Link>
         </header>
-        
+
         <div className="courses-grid">
-          {(activeTab === 'all' ? allCourses : courses[activeTab]).map(course => (
-            <div key={course.id} className="course-card">
+          {getFilteredCourses().map(course => (
+            <div key={course.id || course.course} className="course-card">
               <img src={course.image} alt={course.title} className="course-image" />
               <h2 className="course-title">{course.title}</h2>
               <p className="course-description">{course.description}</p>
-              <Link to={`/Courses/${course.id}`} className="view-course-button">View Course</Link>
+              <Link to={`/courses/${course.id}`} className="view-course-button">View Course</Link>
+              {/* Optionally display progress */}
+              {userCourses.some(uc => uc.course === course.title) && (
+                <p>Progress: {userCourses.find(uc => uc.course === course.title).progress}%</p>
+              )}
             </div>
           ))}
         </div>
       </main>
     </div>
-    {/* Footer Section */}
-    <footer className="footer">
-        <div className="footer-logo">
-          <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
-        </div>
-        <div className="footer-links">
-          <Link to="/Donate">Do you want to support us?</Link>
-          <Link to="/Privacy">Privacy Policy</Link>
-          <Link to="/Terms">Terms of Service</Link>
-        </div>
-        <div className="social-media">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="/facebook.jpg" alt="Facebook" className="social-icon" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <img src="/twitter.jpg" alt="Twitter" className="social-icon" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src="/instagram.jpg" alt="Instagram" className="social-icon" />
-          </a>
-        </div>
-      </footer>
-      </div>
   );
 };
 

@@ -23,7 +23,7 @@ const ForumEvents = () => {
   <div className="forum-card">
     <img src="/chat.png" alt="Chat Icon" className="forum-card-icon" />
     <div className="forum-card-content">
-      <h4><a href="/forum">What can we do to protect endangered species?</a></h4>
+      <h4><a href="/login">What can we do to protect endangered species?</a></h4>
       <p>Discuss strategies to save endangered species and exchange ideas with others.</p>
     </div>
   </div>
@@ -31,7 +31,7 @@ const ForumEvents = () => {
   <div className="forum-card">
     <img src="/chat.png" alt="Chat Icon" className="forum-card-icon" />
     <div className="forum-card-content">
-      <h4><a href="/forum">Innovative technologies in wildlife preservation</a></h4>
+      <h4><a href="/login">Innovative technologies in wildlife preservation</a></h4>
       <p>Explore the latest tech being used to help preserve wildlife globally.</p>
     </div>
   </div>
@@ -39,7 +39,7 @@ const ForumEvents = () => {
   <div className="forum-card">
     <img src="/chat.png" alt="Chat Icon" className="forum-card-icon" />
     <div className="forum-card-content">
-      <h4><a href="/forum">Local conservation efforts in our community</a></h4>
+      <h4><a href="/login">Local conservation efforts in our community</a></h4>
       <p>Share and learn about the local efforts in conservation happening near you.</p>
     </div>
   </div>
@@ -48,7 +48,7 @@ const ForumEvents = () => {
         </div>
 
         {/* Link to Forum Page */}
-        <Link to="/forum" className="join-forum-button">Join Forum</Link>
+        <Link to="/login" className="join-forum-button">Join Forum</Link>
       </div>
 
       {/* Events Section */}
@@ -80,7 +80,7 @@ const ForumEvents = () => {
         </div>
 
         {/* Link to View All Events Page */}
-        <Link to="/all-events" className="view-events-button">View All Events</Link>
+        <Link to="/login" className="view-events-button">View All Events</Link>
       </div>
     </div>
     {/* Footer Section */}

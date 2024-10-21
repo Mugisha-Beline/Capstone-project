@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
-import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ForumEvents from './pages/ForumEvents';
@@ -15,6 +14,9 @@ import PostRegister from './pages/PostRegister';
 import NotFound from './pages/NotFound'; // Import NotFound page
 import Payment from './pages/Donate';
 import Settings from './pages/Settings'; // Settings component
+import AddCourse from './pages/AddCourse';
+import CourseDetail from './pages/CourseDetail'; // Add';
+import { signUp, login, addContactFormEntry } from './Firebase'; // Fix typo here
 
 function App() {
   return (
@@ -23,7 +25,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forum-events" element={<ForumEvents />} />
         <Route path="/forum" element={<Forum />} />
@@ -34,6 +35,8 @@ function App() {
         <Route path="/post-register" element={<PostRegister />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/add-course" element={<AddCourse />} />
+        <Route path="/course-detail" element={<CourseDetail />} />
         <Route path="*" element={<NotFound />} /> {/* Catch-all for undefined routes */}
       </Routes>
     </Router>

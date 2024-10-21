@@ -1,6 +1,8 @@
 // src/pages/Signup.js
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { Link, useNavigate } from 'react-router-dom';
+import { signUp } from './Firebase';
+import { login } from './Firebase'; // Correct import
 import './Signup.css';
 import './Home.css';
 import './PostRegister.css';
@@ -10,97 +12,99 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [animate, setAnimate] = useState(false); // State for animation
+  const [animate, setAnimate] = useState(false);
 
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Set the animation to true when the component mounts
     setAnimate(true);
     const timer = setTimeout(() => {
-      setAnimate(false); // Reset animation state after 3 seconds
-    }, 3000); // Duration of the animation
+      setAnimate(false);
+    }, 3000);
 
-    // Cleanup function to clear the timer
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    
-    // Validate password match
+
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-    
-    console.log('Signing up with:', name, email, password);
-    
-    // After handling the signup logic (e.g., API call), redirect to Post Register page
-    navigate('/post-register'); // Programmatically navigate after signup
+
+    try {
+      // Call the signUp function from firebase.js
+      await signUp(email, password);
+      alert("Registration successful!");
+      navigate('/post-register'); 
+    } catch (error) {
+      alert(error.message); 
+    }
   };
 
   return (
     <div className="signuppage">
-    <div className={`sign ${animate ? 'bounce' : ''}`}>
-      <div className="signup">
-        <h2>Register Here!</h2>
-        <form onSubmit={handleSignup}>
-          <div className="form">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              placeholder="Enter your name"
-            />
-          </div>
-          <div className="form">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="Enter your email"
-            />
-          </div>
-          <div className="form">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Create a password"
-            />
-          </div>
-          <div className="form">
-            <label htmlFor="confirm-password">Confirm Password:</label>
-            <input
-              type="password"
-              id="confirm-password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              placeholder="Confirm your password"
-            />
-          </div>
-          <ul>
-            <center><Link to="/post-register" className="cta-button">Sign Up</Link></center>
-          </ul>
-        </form>
-        <p>
-          Already have an account? <a href="/login">Login here</a>
-        </p>
+      <div className={`sign ${animate ? 'bounce' : ''}`}>
+        <div className="signup">
+          <h2>Register Here!</h2>
+          <form onSubmit={handleSignup}>
+            <div className="form">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Enter your name"
+              />
+            </div>
+            <div className="form">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Enter your email"
+              />
+            </div>
+            <div className="form">
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Create a password"
+              />
+            </div>
+            <div className="form">
+              <label htmlFor="confirm-password">Confirm Password:</label>
+              <input
+                type="password"
+                id="confirm-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                placeholder="Confirm your password"
+              />
+            </div>
+            <ul>
+              <center>
+                <button type="submit" className="cta-button">Sign Up</button>
+              </center>
+            </ul>
+          </form>
+          <p>
+            Already have an account? <Link to="/login">Login here</Link>
+          </p>
+        </div>
       </div>
-    </div>
-    {/* Footer Section */}
-    <footer className="footer">
+      <footer className="footer">
         <div className="footer-logo">
           <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
         </div>
@@ -121,7 +125,7 @@ const Signup = () => {
           </a>
         </div>
       </footer>
-      </div>
+    </div>
   );
 };
 

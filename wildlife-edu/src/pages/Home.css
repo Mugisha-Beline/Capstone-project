@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh; /* Full viewport height */
-  background: url('/hero-image.jpg') no-repeat center center; /* Update with your image path */
+  background-image: url('../assets/images/hero-image.jpg') no-repeat center center; /* Update with your image path */
   background-size: cover;
   color: white;
   text-align: center;

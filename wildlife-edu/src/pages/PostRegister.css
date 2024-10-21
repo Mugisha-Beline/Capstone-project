@@ -1,5 +1,5 @@
 .registered {
-  background-image: url('/registered.jpg');
+  background-image: url('../assets/images/registered.jpg');
   background-size: cover; /* Make the background image cover the entire container */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the image from repeating */

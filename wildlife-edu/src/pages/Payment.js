@@ -27,7 +27,7 @@ const Donate = () => {
             <div key={option.id} className="donation-card">
               <h3>{option.amount ? `$${option.amount}` : 'Custom Amount'}</h3>
               <p>{option.description}</p>
-              <Link to="/Payment" className="donate-button">Donate Now</Link>
+              <Link to="/Pay" className="donate-button">Donate Now</Link>
             </div>
           ))}
         </div>
@@ -41,7 +41,7 @@ const Donate = () => {
             placeholder="Enter your preferred amount"
             min="1" // Minimum amount can be set
           />
-          <Link to="/Payment" className="donate-button">Donate Now</Link>
+          <Link to="/Pay" className="donate-button">Donate Now</Link>
         </div>
       </div>
       {/* Footer Section */}

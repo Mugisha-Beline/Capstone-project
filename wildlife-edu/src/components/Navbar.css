@@ -38,7 +38,7 @@
 }
 
 /* Special styling for Donate button */
-.navbar-links a[href="/donate"] {
+.navbar-links a[href="/payment"] {
   background-color: #021000;      /* Donate button background */
   color: white;                   /* White text for Donate */
   border-radius: 5px;             /* Rounded corners */

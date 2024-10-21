@@ -1,10 +1,18 @@
-// src/pages/About.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { db } from './Firebase'; 
+import { collection, addDoc } from 'firebase/firestore'; 
 import './Home.css';
-import './About.css'; // Updated CSS file for About section
+import './About.css';
 
 const About = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll('.about-fade-in-up, .about-fade-in-left, .about-fade-in-right');
@@ -23,21 +31,79 @@ const About = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Email validation helper function
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  // Form validation before submission
+  const validateForm = () => {
+    if (name.trim().length < 2) {
+      setErrorMessage('Name should be at least 2 characters long.');
+      return false;
+    }
+    if (!validateEmail(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return false;
+    }
+    if (message.trim().length < 10) {
+      setErrorMessage('Message should be at least 10 characters long.');
+      return false;
+    }
+    return true;
+  };
+
+  // Firebase form submission with validation
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMessage(''); // Reset error message before validation
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const contactRef = collection(db, 'contacts');
+      await addDoc(contactRef, {
+        name,
+        email,
+        message,
+        createdAt: new Date(),
+      });
+
+      // Clear form fields and show success message
+      setName('');
+      setEmail('');
+      setMessage('');
+      setSuccessMessage('Thank you! Your message has been sent.');
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      setErrorMessage('There was an error submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="Aboutus">
       <div className="about about-fade-in-up">
         <div className="background-section">
-  <div className="content">
-    <h1>
-      Welcome to WildlifEDU, a platform dedicated to educating and engaging individuals in the importance of wildlife conservation.
-    </h1>
-  </div>
-  <Link to="/all-events" className="cta-button">Upcoming Events</Link>
-</div>
-<div> <h2>About Us</h2>
-<p>Endangered Animals in Rwanda’s Akagera National Park is the particular focus of the study and it will be undertaken in partnership with local communities, nature care organizations as well as experts</p></div>
-<img src="/elephants.jpg" alt="Mission" />
-  <div className="about-images">
+          <div className="content">
+            <h1>Welcome to WildlifEDU, a platform dedicated to educating and engaging individuals in the importance of wildlife conservation.</h1>
+          </div>
+          <Link to="/all-events" className="cta-button">Upcoming Events</Link>
+        </div>
+        <div>
+          <h2>About Us</h2>
+          <p>
+            Endangered Animals in Rwanda’s Akagera National Park is the particular focus of the study, and it will be undertaken in partnership with local communities, nature care organizations, as well as experts.
+          </p>
+        </div>
+        <img src="/elephants.jpg" alt="Mission" />
+        <div className="about-images">
           <div className="about-image about-fade-in-left">
             <h3>Our Mission</h3>
             <p>We believe that education is the key to fostering a deeper understanding of wildlife.</p>
@@ -73,43 +139,56 @@ const About = () => {
         </div>
       </section>
 
-      {/* Contact Section (optional, can be added as needed) */}
+      {/* Contact Section */}
       <section className="contact about-fade-in-up">
-        <h2>Let’s Connect With Your Ideas!</h2>
-        <div className="contact-content">
-          <img src="/contact.jpg" alt="Contact Us" className="contact-image about-fade-in-right" />
-          <form>
-            <div className="form-group about-fade-in-up">
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                required
-                placeholder="Enter your name"
-              />
-            </div>
-            <div className="form-group about-fade-in-up">
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                required
-                placeholder="Enter your email"
-              />
-            </div>
-            <div className="form-group about-fade-in-up">
-              <label htmlFor="message">Message:</label>
-              <textarea
-                id="message"
-                required
-                placeholder="Type your message here"
-              />
-            </div>
-            <button type="submit" className="contact-button about-fade-in-up">Send Message</button>
-          </form>
-        </div>
-      </section>
-
+          <h2>Let’s Connect With Your Ideas!</h2>
+          <div className="contact-content">
+            <img src="/contact.jpg" alt="Contact Us" className="contact-image about-fade-in-right" />
+            <form onSubmit={handleSubmit}>
+              <div className="form-group about-fade-in-up">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  placeholder="Enter your name"
+                  disabled={isSubmitting}
+                />
+              </div>
+              <div className="form-group about-fade-in-up">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="Enter your email"
+                  disabled={isSubmitting}
+                />
+              </div>
+              <div className="form-group about-fade-in-up">
+                <label htmlFor="message">Message:</label>
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
+                  placeholder="Type your message here"
+                  disabled={isSubmitting}
+                />
+              </div>
+              <button type="submit" className="contact-button about-fade-in-up" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
+              {successMessage && <p className="success-message">{successMessage}</p>}
+            </form>
+          </div>
+        </section>
+        
       {/* Call to Action Section */}
       <section className="call-to-action about-fade-in-up">
         <h2>Join Our Community</h2>
