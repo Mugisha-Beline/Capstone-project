@@ -17,7 +17,7 @@ const Login = () => {
       // Call the login function from firebase.js
       await login(email, password);
       alert("Login successful!");
-      navigate('/courses');
+      navigate('/post-register');
     } catch (error) {
       if (error.code === 'auth/user-not-found') {
         alert("User not found. Please register before logging in.");
