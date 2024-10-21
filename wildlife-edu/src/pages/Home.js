@@ -123,19 +123,19 @@ const About = () => {
       <section className="educational-content about-fade-in-up">
         <h2>Study with us at WildlifEDU!</h2>
         <div className="content-cards">
-          <Link to="/courses/conservation-101" className="content-card about-fade-in-left">
+          <Link to="/login" className="content-card about-fade-in-left">
             <img src="/conservation.jpg" alt="Conservation 101" className="card-image" />
             <h3>Conservation 101</h3>
             <p>Learn the basics of wildlife conservation.</p>
           </Link>
 
-          <Link to="/courses/innovative-technologies" className="content-card about-fade-in-up">
+          <Link to="/login" className="content-card about-fade-in-up">
             <img src="/technology.jpg" alt="Innovative Technologies" className="card-image" />
             <h3>Innovative Technologies</h3>
             <p>Explore how technology is helping preserve wildlife.</p>
           </Link>
 
-          <Link to="/courses/local-wildlife" className="content-card about-fade-in-right">
+          <Link to="/login" className="content-card about-fade-in-right">
             <img src="/local.jpg" alt="Local Wildlife" className="card-image" />
             <h3>Local Wildlife</h3>
             <p>Discover the wildlife in your area and how to protect it.</p>
