@@ -15,7 +15,8 @@ import NotFound from './pages/NotFound'; // Import NotFound page
 import Payment from './pages/Donate';
 import Settings from './pages/Settings'; // Settings component
 import AddCourse from './pages/AddCourse';
-import CourseDetail from './pages/CourseDetail'; // Add';
+import CourseDetail from './pages/CourseDetail';
+import Pay from './pages/Pay';
 import { signUp, login, addContactFormEntry } from './Firebase'; // Fix typo here
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/add-course" element={<AddCourse />} />
         <Route path="/course-detail" element={<CourseDetail />} />
+        <Route path="/pay" element={<Pay />} />
         <Route path="*" element={<NotFound />} /> {/* Catch-all for undefined routes */}
       </Routes>
     </Router>

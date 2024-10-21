@@ -1,6 +1,8 @@
 // src/pages/Settings.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth'; // Import Firebase methods
+import { auth } from './Firebase'; // Import Firebase auth instance
 import './Home.css';
 import './Settings.css'; // Import the CSS for styling
 
@@ -9,6 +11,9 @@ const Settings = () => {
   const [profilePicture, setProfilePicture] = useState('/profile.jpg'); // Default profile picture
   const [name, setName] = useState('John Doe'); // Default name
   const [emailNotifications, setEmailNotifications] = useState(true); // Default notification preference
+  const [oldPassword, setOldPassword] = useState(''); // Old password
+  const [newPassword, setNewPassword] = useState(''); // New password
+  const [confirmNewPassword, setConfirmNewPassword] = useState(''); // Confirm new password
 
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
@@ -17,90 +22,148 @@ const Settings = () => {
     }
   };
 
+  const handleSaveChanges = () => {
+    // Save changes to Firebase (this should include name, profile picture, and notification preferences)
+    alert('Changes saved successfully!');
+  };
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+
+    if (newPassword !== confirmNewPassword) {
+      alert('New passwords do not match!');
+      return;
+    }
+
+    try {
+      // Re-authenticate the user with the old password before allowing password change
+      const user = auth.currentUser;
+      const credential = EmailAuthProvider.credential(user.email, oldPassword);
+      await reauthenticateWithCredential(user, credential); // Re-authenticate the user
+
+      // Update the password
+      await updatePassword(user, newPassword);
+      alert('Password changed successfully!');
+    } catch (error) {
+      alert(error.message); // Handle errors (e.g., wrong old password, network issues)
+    }
+  };
+
   return (
     <div className="settingspage">
-    <div className="settings-page">
-      <aside className="sidebar">
-        <ul>
-          <h2>WildlifEDU courses</h2>
-          <img src={profilePicture} alt="profile" className="profile-image" />
-          <h2>Dashboard</h2>
-        </ul>
-        <ul>
-          <li onClick={() => setActiveTab('account')} className={activeTab === 'account' ? 'active' : ''}>
-            Account Settings
-          </li>
-          <li onClick={() => setActiveTab('payment')} className={activeTab === 'payment' ? 'active' : ''}>
-            Payment Method
-          </li>
-          <li onClick={() => setActiveTab('notifications')} className={activeTab === 'notifications' ? 'active' : ''}>
-            Notifications
-          </li>
-        </ul>
-        <ul>
-          <Link to="/courses" className="cta-button">Courses</Link>
-        </ul>
-      </aside>
-
-      <main className="settings-content">
-        {activeTab === 'account' && (
-          <div className="account-settings">
-            <h1>Account Settings</h1>
-            <div className="setting-item">
-              <label htmlFor="profilePicture">Profile Picture</label>
-              <input type="file" id="profilePicture" accept="image/*" onChange={handleProfilePictureChange} />
-              <img src={profilePicture} alt="profile" className="profile-image-preview" />
+      <div className="settings-page">
+        <aside className="sidebar">
+          <ul>
+            <div className="profile-image-container">
+              <img src={profilePicture} alt="profile" className="profile-image" />
             </div>
-            <div className="setting-item">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your name"
-              />
-            </div>
-          </div>
-        )}
+          </ul>
+          <ul>
+            <li onClick={() => setActiveTab('account')} className={activeTab === 'account' ? 'active' : ''}>
+              Account Settings
+            </li>
+            <li onClick={() => setActiveTab('notifications')} className={activeTab === 'notifications' ? 'active' : ''}>
+              Notifications
+            </li>
+            <li onClick={() => setActiveTab('password')} className={activeTab === 'password' ? 'active' : ''}>
+              Change Password
+            </li>
+          </ul>  
+         <Link to="/courses" className="cta-button">Courses</Link>
+        </aside>
 
-        {activeTab === 'payment' && (
-          <div className="payment-settings">
-            <h1>Payment Method</h1>
-            <div className="setting-item">
-              <label htmlFor="paymentMethod">Select Payment Method</label>
-              <select id="paymentMethod">
-                <option value="creditCard">Credit Card</option>
-                <option value="paypal">PayPal</option>
-                <option value="bankTransfer">Bank Transfer</option>
-              </select>
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'notifications' && (
-          <div className="notification-settings">
-            <h1>Email Notifications</h1>
-            <div className="setting-item">
-              <label>
+        <main className="settings-content">
+          {activeTab === 'account' && (
+            <div className="account-settings">
+              <h1>Account Settings</h1>
+              <div className="setting-item">
+                <label htmlFor="profilePicture">Profile Picture</label>
+                <input type="file" id="profilePicture" accept="image/*" onChange={handleProfilePictureChange} />
+                <img src={profilePicture} alt="profile" className="profile-image-preview" />
+              </div>
+              <div className="setting-item">
+                <label htmlFor="name">Name</label>
                 <input
-                  type="checkbox"
-                  checked={emailNotifications}
-                  onChange={() => setEmailNotifications(!emailNotifications)}
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your name"
                 />
-                Receive notifications via email
-              </label>
+              </div>
             </div>
+          )}
+
+          {activeTab === 'notifications' && (
+            <div className="notification-settings">
+              <h1>Email Notifications</h1>
+              <div className="setting-item">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={emailNotifications}
+                    onChange={() => setEmailNotifications(!emailNotifications)}
+                  />
+                  Receive notifications via email
+                </label>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'password' && (
+            <div className="password-settings">
+              <h1>Change Password</h1>
+              <form onSubmit={handlePasswordChange}>
+                <div className="setting-item">
+                  <label htmlFor="oldPassword">Old Password</label>
+                  <input
+                    type="password"
+                    id="oldPassword"
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                    placeholder="Enter old password"
+                    required
+                  />
+                </div>
+                <div className="setting-item">
+                  <label htmlFor="newPassword">New Password</label>
+                  <input
+                    type="password"
+                    id="newPassword"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Enter new password"
+                    required
+                  />
+                </div>
+                <div className="setting-item">
+                  <label htmlFor="confirmNewPassword">Confirm New Password</label>
+                  <input
+                    type="password"
+                    id="confirmNewPassword"
+                    value={confirmNewPassword}
+                    onChange={(e) => setConfirmNewPassword(e.target.value)}
+                    placeholder="Confirm new password"
+                    required
+                  />
+                </div>
+                <button type="submit" className="save-button">
+                  Change Password
+                </button>
+              </form>
+            </div>
+          )}
+
+          <div className="settings-actions">
+            <button className="save-button" onClick={handleSaveChanges}>
+              Save Changes
+            </button>
           </div>
-        )}
-        
-        <div className="settings-actions">
-          <button className="save-button">Save Changes</button>
-        </div>
-      </main>
-    </div>
-    {/* Footer Section */}
-    <footer className="footer">
+        </main>
+      </div>
+
+      {/* Footer Section */}
+      <footer className="footer">
         <div className="footer-logo">
           <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
         </div>
@@ -121,7 +184,7 @@ const Settings = () => {
           </a>
         </div>
       </footer>
-      </div>
+    </div>
   );
 };
 

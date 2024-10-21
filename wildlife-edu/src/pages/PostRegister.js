@@ -15,6 +15,7 @@ const PostRegister = () => {
       <div className="post-register-actions">
         <Link to="/courses" className="post-register-button">Explore Courses</Link>
         <Link to="/forum" className="post-register-button">Join Forum</Link>
+        <Link to="/all-events" className="post-register-button">View All Events</Link>
       </div>
     </div>
     </div>

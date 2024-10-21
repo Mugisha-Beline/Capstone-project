@@ -193,7 +193,7 @@ const About = () => {
       <section className="call-to-action about-fade-in-up">
         <h2>Join Our Community</h2>
         <p>Engage with other wildlife enthusiasts and experts.</p>
-        <Link to="/Forum" className="cta-button">Join the Forum</Link>
+        <Link to="/login" className="cta-button">Join the Forum</Link>
       </section>
 
       {/* Footer Section */}

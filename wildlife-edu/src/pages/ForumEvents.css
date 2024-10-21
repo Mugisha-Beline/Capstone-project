@@ -119,6 +119,7 @@
   display: block;
   font-size: 18px;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .event-card p {

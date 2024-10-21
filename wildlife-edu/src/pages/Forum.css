@@ -148,12 +148,24 @@
   border-radius: 25px;
   cursor: pointer;
   font-size: 16px;
+  margin-left: 500px;
+  margin-right: 500px;
   transition: background-color 2s ease-in-out; /* Transition for smooth hover effect */
 }
 
 .submit-post-button:hover {
   background-color: #45a049; /* Darker green on hover */
 }
+
+.like-dislike {
+  margin-top: 10px;
+}
+
+.reply {
+  margin-left: 20px; /* Indent replies */
+  font-style: italic;
+}
+
 /* Footer Section */
 .footer-logo-image, .footer-links, .social-media {
   opacity: 0;
