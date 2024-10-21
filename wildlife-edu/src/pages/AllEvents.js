@@ -6,54 +6,55 @@ import './AllEvents.css'; // Assuming a new CSS file for this page
 const AllEvents = () => {
   return (
     <div className="allevents">
-    <div className="all-events">
-      <h2>Take part in these exciting events!</h2>
+      <div className="all-events">
+        <h2>Take part in these exciting events!</h2>
 
-      {/* Event List Section */}
-      <div className="events-list">
-        {/* Individual Event Items */}
-        <div className="event-item">
-          <img src="/wildlife-workshop.jpg" alt="Wildlife Conservation Workshop" className="event-image" />
-          <div className="event-details">
-            <strong>Wildlife Conservation Workshop</strong>
-            <p>Date: October 25, 2024</p>
-            <p>Location: Community Center, City Hall</p>
-          </div>
+        {/* Event List Section */}
+        <div className="events-list">
+          {/* Individual Event Items */}
+          <Link to="/events/wildlife-conservation-workshop" className="event-item">
+            <img src="/wildlife-workshop.jpg" alt="Wildlife Conservation Workshop" className="event-image" />
+            <div className="event-details">
+              <strong>Wildlife Conservation Workshop</strong>
+              <p>Date: October 25, 2024</p>
+              <p>Location: Community Center, City Hall</p>
+            </div>
+          </Link>
+
+          <Link to="/events/beach-cleanup" className="event-item">
+            <img src="/beach-cleanup.jpg" alt="Beach Cleanup Day" className="event-image" />
+            <div className="event-details">
+              <strong>Beach Cleanup Day</strong>
+              <p>Date: November 5, 2024</p>
+              <p>Location: Local Beach Park</p>
+            </div>
+          </Link>
+
+          <Link to="/events/wildlife-photography-exhibition" className="event-item">
+            <img src="/wildlife-photography.jpg" alt="Wildlife Photography Exhibition" className="event-image" />
+            <div className="event-details">
+              <strong>Wildlife Photography Exhibition</strong>
+              <p>Date: December 1-15, 2024</p>
+              <p>Location: City Art Gallery</p>
+            </div>
+          </Link>
+
+          <Link to="/events/kwita-izina-day" className="event-item">
+            <img src="/kwita-izina.jpg" alt="Kwita Izina Day" className="event-image" />
+            <div className="event-details">
+              <strong>Kwita Izina Day</strong>
+              <p>Date: November 29, 2024</p>
+              <p>Location: Volcano National Park</p>
+            </div>
+          </Link>
+          {/* Add more event items here */}
         </div>
 
-        <div className="event-item">
-          <img src="/beach-cleanup.jpg" alt="Beach Cleanup Day" className="event-image" />
-          <div className="event-details">
-            <strong>Beach Cleanup Day</strong>
-            <p>Date: November 5, 2024</p>
-            <p>Location: Local Beach Park</p>
-          </div>
-        </div>
-
-        <div className="event-item">
-          <img src="/wildlife-photography.jpg" alt="Wildlife Photography Exhibition" className="event-image" />
-          <div className="event-details">
-            <strong>Wildlife Photography Exhibition</strong>
-            <p>Date: December 1-15, 2024</p>
-            <p>Location: City Art Gallery</p>
-          </div>
-        </div>
-        <div className="event-item">
-          <img src="/kwita-izina.jpg" alt="Kwita izina Day" className="event-image" />
-          <div className="event-details">
-            <strong>Kwita izina Day</strong>
-            <p>Date: November 29, 2024</p>
-            <p>Location: Volucano National Park</p>
-          </div>
-        </div>
-        {/* Add more event items here */}
+        {/* Back to Home Button */}
+        <Link to="/" className="back-button">Back to Home</Link>
       </div>
-
-      {/* Back to Home Button */}
-      <Link to="/" className="back-button">Back to Home</Link>
-    </div>
-    {/* Footer Section */}
-    <footer className="footer">
+      {/* Footer Section */}
+      <footer className="footer">
         <div className="footer-logo">
           <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
         </div>

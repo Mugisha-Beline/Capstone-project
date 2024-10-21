@@ -1,3 +1,4 @@
+// src/pages/About.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from './Firebase'; 
@@ -122,73 +123,75 @@ const About = () => {
       <section className="educational-content about-fade-in-up">
         <h2>Study with us at WildlifEDU!</h2>
         <div className="content-cards">
-          <div className="content-card about-fade-in-left">
+          <Link to="/login" className="content-card about-fade-in-left">
             <img src="/conservation.jpg" alt="Conservation 101" className="card-image" />
             <h3>Conservation 101</h3>
             <p>Learn the basics of wildlife conservation.</p>
-          </div>
-          <div className="content-card about-fade-in-up">
+          </Link>
+
+          <Link to="/login" className="content-card about-fade-in-up">
             <img src="/technology.jpg" alt="Innovative Technologies" className="card-image" />
             <h3>Innovative Technologies</h3>
             <p>Explore how technology is helping preserve wildlife.</p>
-          </div>
-          <div className="content-card about-fade-in-right">
+          </Link>
+
+          <Link to="/login" className="content-card about-fade-in-right">
             <img src="/local.jpg" alt="Local Wildlife" className="card-image" />
             <h3>Local Wildlife</h3>
             <p>Discover the wildlife in your area and how to protect it.</p>
-          </div>
+          </Link>
         </div>
       </section>
 
       {/* Contact Section */}
       <section className="contact about-fade-in-up">
-          <h2>Let’s Connect With Your Ideas!</h2>
-          <div className="contact-content">
-            <img src="/contact.jpg" alt="Contact Us" className="contact-image about-fade-in-right" />
-            <form onSubmit={handleSubmit}>
-              <div className="form-group about-fade-in-up">
-                <label htmlFor="name">Name:</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  placeholder="Enter your name"
-                  disabled={isSubmitting}
-                />
-              </div>
-              <div className="form-group about-fade-in-up">
-                <label htmlFor="email">Email:</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="Enter your email"
-                  disabled={isSubmitting}
-                />
-              </div>
-              <div className="form-group about-fade-in-up">
-                <label htmlFor="message">Message:</label>
-                <textarea
-                  id="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                  placeholder="Type your message here"
-                  disabled={isSubmitting}
-                />
-              </div>
-              <button type="submit" className="contact-button about-fade-in-up" disabled={isSubmitting}>
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
-              {successMessage && <p className="success-message">{successMessage}</p>}
-            </form>
-          </div>
-        </section>
+        <h2>Let’s Connect With Your Ideas!</h2>
+        <div className="contact-content">
+          <img src="/contact.jpg" alt="Contact Us" className="contact-image about-fade-in-right" />
+          <form onSubmit={handleSubmit}>
+            <div className="form-group about-fade-in-up">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Enter your name"
+                disabled={isSubmitting}
+              />
+            </div>
+            <div className="form-group about-fade-in-up">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Enter your email"
+                disabled={isSubmitting}
+              />
+            </div>
+            <div className="form-group about-fade-in-up">
+              <label htmlFor="message">Message:</label>
+              <textarea
+                id="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+                placeholder="Type your message here"
+                disabled={isSubmitting}
+              />
+            </div>
+            <button type="submit" className="contact-button about-fade-in-up" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
+          </form>
+        </div>
+      </section>
         
       {/* Call to Action Section */}
       <section className="call-to-action about-fade-in-up">

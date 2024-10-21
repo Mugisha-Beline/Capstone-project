@@ -13,7 +13,6 @@
   box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Shadow for sidebar */
   transition: transform 0.3s ease; /* Smooth transition for sidebar */
 }
-/* src/pages/Courses.css */
 
 /* Add this class for the sidebar image centering */
 .profile-image-container {
@@ -61,6 +60,7 @@
   flex: 1; /* Take up remaining space */
   padding: 20px; /* Padding for content area */
   background-color: #f9f9f9; /* Light background */
+  overflow-y: auto; /* Allow scrolling for content */
 }
 
 .courses-header {
@@ -86,7 +86,7 @@
 }
 
 .add-course-button:hover {
-  background-color: #485A48; /* Darker green on hover */
+  background-color: #3C5916; /* Darker green on hover */
 }
 
 .courses-grid {
@@ -97,7 +97,7 @@
 
 .course-card {
   background-color: white;
-  border-radius: 30%; /* Rounded corners */
+  border-radius: 15px; /* Adjusted rounded corners */
   box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Shadow */
   overflow: hidden; /* Round corners */
   text-align: center;
@@ -128,7 +128,7 @@
 
 .view-course-button {
   display: inline-block;
-  background-color: #3C5916; /* Blue button */
+  background-color: #3C5916; /* Button color */
   color: white;
   padding: 10px;
   border-radius: 5px;
@@ -140,6 +140,7 @@
 .view-course-button:hover {
   background-color: #005f73; /* Darker blue on hover */
 }
+
 /* Footer Section */
 .footer-logo-image, .footer-links, .social-media {
   opacity: 0;

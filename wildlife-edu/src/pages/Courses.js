@@ -5,13 +5,55 @@ import './Courses.css';
 import { getAllCourses, getUserCourses } from './utils/api';
 
 const Courses = () => {
-  const [activeTab, setActiveTab] = useState('ongoing');
+  const [activeTab, setActiveTab] = useState('All');
   const [courses, setCourses] = useState([]);
   const [userCourses, setUserCourses] = useState([]);
 
+  // Sample course data to illustrate the structure
+  const sampleCourses = [
+    {
+      id: 1,
+      title: 'Conservation 101',
+      description: 'Learn the basics of wildlife conservation.',
+      image: '/conservation.jpg',
+    },
+    {
+      id: 2,
+      title: 'Innovative Technologies',
+      description: 'Explore how technology is helping preserve wildlife.',
+      image: '/technology.jpg',
+    },
+    {
+      id: 3,
+      title: 'Local Wildlife',
+      description: 'Discover the wildlife in your area and how to protect it.',
+      image: '/local.jpg',
+    },
+    {
+      id: 4,
+      title: 'Sustainable Practices',
+      description: 'Understand sustainable practices for wildlife protection.',
+      image: '/sustainable.jpg',
+    },
+    {
+      id: 5,
+      title: 'Ecological Footprints',
+      description: 'Learn about ecological footprints and their impacts.',
+      image: '/ecological.jpg',
+    },
+  ];
+
   // Fetch all courses and user's progress when the component mounts
   useEffect(() => {
-    getAllCourses().then(data => setCourses(data.courses));
+    // Here you might want to use the sample courses if the API call fails
+    getAllCourses()
+      .then(data => {
+        setCourses(data.courses.length ? data.courses : sampleCourses); // Use sample data if no courses found
+      })
+      .catch(() => {
+        setCourses(sampleCourses); // Fallback to sample courses if fetch fails
+      });
+
     getUserCourses().then(data => setUserCourses(data.user_courses));
   }, []);
 
@@ -49,14 +91,15 @@ const Courses = () => {
       <main className="courses-content">
         <header className="courses-header">
           <h1>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Courses</h1>
-          <Link to="/add-course" className="add-course-button">Add New Course</Link>
         </header>
 
         <div className="courses-grid">
           {getFilteredCourses().map(course => (
             <div key={course.id || course.course} className="course-card">
               <img src={course.image} alt={course.title} className="course-image" />
-              <h2 className="course-title">{course.title}</h2>
+              <Link to={`/courses/${course.id}`} className="course-title">
+                <h2>{course.title}</h2>
+              </Link>
               <p className="course-description">{course.description}</p>
               <Link to={`/courses/${course.id}`} className="view-course-button">View Course</Link>
               {/* Optionally display progress */}
