@@ -94,9 +94,9 @@ const About = () => {
       <div className="about about-fade-in-up">
         <div className="background-section">
           <div className="content">
-            <h1>Welcome to WildlifEDU, a platform dedicated to educating and engaging individuals in the importance of wildlife conservation.</h1>
+            <h1>Let’s Care Our Wildlife Together!</h1>
           </div>
-          <Link to="/all-events" className="cta-button">Upcoming Events</Link>
+          <Link to="/login" className="cta-button">Upcoming Events</Link>
         </div>
         <div>
           <h2>About Us</h2>
@@ -199,29 +199,6 @@ const About = () => {
         <p>Engage with other wildlife enthusiasts and experts.</p>
         <Link to="/login" className="cta-button">Join the Forum</Link>
       </section>
-
-      {/* Footer Section */}
-      <footer className="footer about-fade-in-up">
-        <div className="footer-logo">
-          <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image about-fade-in-up" />
-        </div>
-        <div className="footer-links about-fade-in-up">
-          <Link to="/Donate">Do you want to support us?</Link>
-          <Link to="/Privacy">Privacy Policy</Link>
-          <Link to="/Terms">Terms of Service</Link>
-        </div>
-        <div className="social-media about-fade-in-up">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="/facebook.jpg" alt="Facebook" className="social-icon" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <img src="/twitter.jpg" alt="Twitter" className="social-icon" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src="/instagram.jpg" alt="Instagram" className="social-icon" />
-          </a>
-        </div>
-      </footer>
     </div>
   );
 };

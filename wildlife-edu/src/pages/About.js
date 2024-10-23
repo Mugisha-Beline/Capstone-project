@@ -94,12 +94,12 @@ const About = () => {
       <div className="about about-fade-in-up">
         <div className="background-section">
           <div className="content">
-            <h1>Welcome to WildlifEDU, a platform dedicated to educating and engaging individuals in the importance of wildlife conservation.</h1>
+            <Link to="/login" className="cta-button event-link">Upcoming Events</Link>
+            <h1>Let’s Care Our Wildlife Together!</h1>
           </div>
-          <Link to="/all-events" className="cta-button">Upcoming Events</Link>
         </div>
         <div>
-          <h2>About Us</h2>
+          <h3>About Us</h3>
           <p>
             Endangered Animals in Rwanda’s Akagera National Park is the particular focus of the study, and it will be undertaken in partnership with local communities, nature care organizations, as well as experts.
           </p>

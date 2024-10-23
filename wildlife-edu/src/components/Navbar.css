@@ -1,11 +1,24 @@
 /* src/components/Navbar.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
 .navbar {
   display: flex;
   justify-content: space-between; /* Align items on both ends */
   align-items: center;            /* Center items vertically */
-  padding: 10px 20px;            /* Add some padding */
-  background-color: #3C5916;     /* Change to your desired background color */
-  color: white;                   /* Text color */
+  padding: 10px 20px;
+  background-color: #3C5916;
+  color: white;
+  width: 100%;                   /* Ensures navbar takes full width */
+  max-width: 1200px;             /* Limits the width for larger screens */
+  margin: 0 auto;                /* Centers navbar */
 }
 
 .navbar-logo img {
@@ -13,50 +26,144 @@
   border-radius: 60px;                
 }
 
+/* Search box styling */
+.search-box {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  flex: 1;
+  max-width: 300px;
+  width: 100%;                  /* Ensures full width on small screens */
+}
+
+/* Navbar links */
 .navbar-links {
-  list-style: none;               /* Remove default list styling */
-  display: flex;                  /* Use flexbox for layout */
-  align-items: center;            /* Center items vertically */
-  gap: 20px;                      /* Space between links */
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .navbar-links li {
-  font-size: 18px;                /* Font size for links */
+  font-size: 18px;
 }
 
 .navbar-links a {
-  text-decoration: none;          /* Remove underline from links */
-  color: white;                   /* Default link color */
-  padding: 10px 15px;             /* Add padding to make links easier to click */
-  transition: color 0.3s, background-color 0.3s; /* Smooth transition for hover */
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  transition: color 0.3s, background-color 0.3s;
 }
 
 .navbar-links a:hover {
-  background-color: white;        /* Background color on hover */
-  color: #3C5916;                 /* Change link text color on hover */
-  border-radius: 4px;             /* Rounded corners on hover */
+  background-color: white;
+  color: #3C5916;
+  border-radius: 4px;
 }
 
 /* Special styling for Donate button */
-.navbar-links a[href="/payment"] {
-  background-color: #021000;      /* Donate button background */
-  color: white;                   /* White text for Donate */
-  border-radius: 5px;             /* Rounded corners */
-  padding: 10px 20px;             /* Extra padding for Donate button */
-  font-weight: bold;              /* Bold text */
-  text-transform: uppercase;      /* Uppercase text */
+.navbar-links .donate-button {
+  background-color: #0b0e0b;       /* Updated to specific color */
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
   transition: all 0.3s ease;
 }
 
-.navbar-links a[href="/donate"]:hover {
-  background-color: #021000;      /* Keep Donate button the same on hover */
-  color: white;                   /* Text color remains white on hover */
+.navbar-links .donate-button:hover {
+  background-color: #018000;   /* Darker shade on hover */
 }
 
-/* Search box styling */
-.search-box {
-  padding: 5px;                   /* Padding for search input */
-  border-radius: 5px;             /* Rounded corners */
-  border: 1px solid #ccc;         /* Border styling */
-  font-size: 14px;                /* Font size for the input */
+/* Menu toggle button (only visible on small screens) */
+.menu-toggle {
+  display: none; /* Hidden on larger screens */
+  cursor: pointer;
+  font-size: 30px;
+  color: white;
+}
+
+.menu-icon {
+  font-size: 30px;
+  color: white;
+}
+
+/* MEDIA QUERIES */
+
+/* Large screens (desktops/laptops) */
+@media (min-width: 1024px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+
+  .search-box {
+    font-size: 16px;
+    max-width: 400px;
+  }
+
+  .navbar-links {
+    display: flex; /* Ensure links are displayed */
+  }
+  
+  .menu-toggle {
+    display: none; /* Hidden on large screens */
+  }
+}
+
+/* Tablets (medium screens) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .search-box {
+    font-size: 14px;
+    max-width: 300px;
+  }
+
+  .navbar-links {
+    display: flex;
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    width: 100%; /* Full width on mobile */
+  }
+
+  .search-box {
+    width: 100%; /* Full width for search box on mobile */
+    margin-bottom: 10px;
+  }
+
+  .menu-toggle {
+    display: block; /* Show menu toggle on small screens */
+  }
+
+  .navbar-links {
+    display: none; /* Hidden by default on small screens */
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Show the links when menu is open */
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .navbar-links li {
+    margin: 5px 0;
+  }
+
+  .navbar-links a {
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
 }

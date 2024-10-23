@@ -1,10 +1,7 @@
-// src/pages/Login.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { login } from './Firebase'; 
-import './Home.css'; 
 import './Login.css'; 
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,7 +11,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // Call the login function from firebase.js
       await login(email, password);
       alert("Login successful!");
       navigate('/post-register');
@@ -52,8 +48,9 @@ const Login = () => {
     <div className="loginpage">
       <div className="login-container">
         <div className="login fade-in-up">
+          
+          <form onSubmit={handleLogin} className="login-form">
           <h2>Login to Your Account</h2>
-          <form onSubmit={handleLogin}>
             <div className="form-group fade-in-up">
               <label htmlFor="email">Email:</label>
               <input
@@ -77,33 +74,17 @@ const Login = () => {
               />
             </div>
             <center><button type="submit" className="cta-button">Login</button></center>
+            <p className="p">
+          Don't have an account? <Link to="/signup">Sign up here</Link>
+        </p>
           </form>
-          <p>
-            Don't have an account? <Link to="/signup">Sign up here</Link>
-          </p>
+
+          <div className="login-image">
+            <img src="/giraffe.jpg" alt="Login Illustration" />
+          </div>
         </div>
+        
       </div>
-      <footer className="footer">
-        <div className="footer-logo">
-          <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
-        </div>
-        <div className="footer-links">
-          <Link to="/Donate">Do you want to support us?</Link>
-          <Link to="/Privacy">Privacy Policy</Link>
-          <Link to="/Terms">Terms of Service</Link>
-        </div>
-        <div className="social-media">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="/facebook.jpg" alt="Facebook" className="social-icon" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <img src="/twitter.jpg" alt="Twitter" className="social-icon" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src="/instagram.jpg" alt="Instagram" className="social-icon" />
-          </a>
-        </div>
-      </footer>
     </div>
   );
 };

@@ -1,3 +1,6 @@
+/* src/pages/PostRegister.css */
+
+/* Background section */
 .registered {
   background-image: url('../assets/images/registered.jpg');
   background-size: cover; /* Make the background image cover the entire container */
@@ -11,92 +14,66 @@
   padding: 20px;
 }
 
+/* Post register container */
 .post-register-container {
-    width: 400px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
+  width: 90%; /* Use percentage for better responsiveness */
+  max-width: 400px; /* Max width for larger screens */
+  margin: 100px auto;
+  padding: 20px;
+  background-color: rgba(7, 5, 5, 0.9); /* Slight transparency for the background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Button styles */
+.post-register-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #3c5916;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.post-register-button:hover {
+  background-color: #2e4410;
+}
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .post-register-container {
+    margin: 50px auto; /* Reduce top margin on smaller screens */
+    padding: 15px; /* Reduce padding */
   }
-  
+
   .post-register-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #3c5916;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
+    padding: 10px 15px; /* Adjust button padding */
+    margin: 5px; /* Reduce margin */
   }
-  
-  .post-register-button:hover {
-    background-color: #2e4410;
+
+  .footer {
+    padding: 10px 0; /* Reduce footer padding */
   }
- /* Footer Section */
-.footer-logo-image, .footer-links, .social-media {
-  opacity: 0;
-  transform: translateY(30px); /* Initial off-screen position */
-  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
 }
 
-.footer-logo-image.show, .footer-links.show, .social-media.show {
-  opacity: 1;
-  transform: translateY(0); /* Slide into view */
-}
-/* Footer Section */
-.footer {
-  text-align: center; /* Center footer text */
-  padding: 20px 0; /* Padding for footer */
-  background-color: #f1f1f1; /* Light background color */
-  margin-top: 20px;
-}
+@media (max-width: 480px) {
+  .post-register-container {
+    width: 95%; /* Full width on very small screens */
+    margin: 20px auto; /* Smaller top margin */
+  }
 
-.footer-links {
-  margin-top: 10px; /* Space above links */
-}
+  .post-register-button {
+    width: 100%; /* Full-width buttons for easier clicking */
+    margin: 5px 0; /* Stack buttons with reduced margin */
+  }
 
-.footer-links a {
-  margin: 0 15px; /* Space between links */
-  color: #f8f8f8; /* Link color */
-}
-/* src/pages/Home.css */
+  .footer {
+    flex-direction: column; /* Stack footer items */
+    align-items: center; /* Center footer items */
+  }
 
-/* Footer Section */
-.footer {
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Space between logo and links */
-  align-items: center; /* Center items vertically */
-  padding: 20px; /* Padding for footer */
-  background-color: #433D3D; /* Light background color */
-}
-
-.footer-logo {
-  flex: 1; /* Allow logo to take its own space */
-}
-
-.footer-logo-image {
-  max-width: 100px; /* Limit logo size */
-}
-
-.footer-links {
-  flex: 2; /* Center area for links */
-  text-align: center; /* Center text */
-}
-
-.footer-links a {
-  margin: 0 15px; /* Space between links */
-  color: #fdfdfd; /* Link color */
-}
-
-.social-media {
-  flex: 1; /* Space for social media icons */
-  display: flex; /* Use flexbox for social icons */
-  justify-content: flex-end; /* Align icons to the right */
-}
-
-.social-icon {
-  width: 30px; /* Set size for social icons */
-  margin-left: 10px; /* Space between icons */
+  .social-icon {
+    width: 25px; /* Adjust social icon size */
+  }
 }

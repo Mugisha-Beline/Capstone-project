@@ -53,28 +53,6 @@ const AllEvents = () => {
         {/* Back to Home Button */}
         <Link to="/" className="back-button">Back to Home</Link>
       </div>
-      {/* Footer Section */}
-      <footer className="footer">
-        <div className="footer-logo">
-          <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
-        </div>
-        <div className="footer-links">
-          <Link to="/Donate">Do you want to support us?</Link>
-          <Link to="/Privacy">Privacy Policy</Link>
-          <Link to="/Terms">Terms of Service</Link>
-        </div>
-        <div className="social-media">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="/facebook.jpg" alt="Facebook" className="social-icon" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <img src="/twitter.jpg" alt="Twitter" className="social-icon" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src="/instagram.jpg" alt="Instagram" className="social-icon" />
-          </a>
-        </div>
-      </footer>
     </div>
   );
 };

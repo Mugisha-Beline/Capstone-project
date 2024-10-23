@@ -28,19 +28,34 @@
 label {
     display: block; /* Block label for proper spacing */
     margin-bottom: 5px; /* Space below label */
-    width: 600px;
+    width: 400px;
+    margin-left: 80px;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%; /* Full width input */
     padding: 10px; /* Padding inside input */
     border: 1px solid #ccc; /* Input border */
     border-radius: 4px; /* Rounded corners */
 }
 
+/* Default textarea height for computers */
 textarea {
-    height: 100px; /* Height for the message area */
+    height: 150px; /* Height for the message area on larger screens */
     resize: vertical; /* Allow vertical resizing */
+    margin-right: 40px;
+}
+
+/* Media queries for tablets and phones */
+@media (max-width: 900px) {
+    textarea {
+        height: 100px; /* Adjusted height for tablets and phones */
+    }
+
+    .contact-button {
+        width: 70%; /* Wider button on smaller screens */
+    }
 }
 
 .contact-button {
@@ -65,16 +80,4 @@ textarea {
 
 .contact-button:hover {
     background-color: #000000; /* Darker button color on hover */
-}
-
-/* Footer Section */
-.footer-logo-image, .footer-links, .social-media {
-    opacity: 0;
-    transform: translateY(30px); /* Initial off-screen position */
-    transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
-}
-
-.footer-logo-image.show, .footer-links.show, .social-media.show {
-    opacity: 1;
-    transform: translateY(0); /* Slide into view */
 }

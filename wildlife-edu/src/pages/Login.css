@@ -1,156 +1,78 @@
-/* src/pages/Login.css */
+/* Updated CSS */
+
+/* Login Container */
 .login-container {
-  background-image: url('../assets/images/swamp.jpg'); /* Path to your background image */
-  background-size: cover; /* Cover the entire container */
-  background-position: center; /* Center the image */
-  height: 100vh; /* Full viewport height */
-  display: flex; /* Flexbox for centering */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  position: relative; /* For overlay positioning */
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align content to the top */
+  padding-top: 40px; /* Add some space from the top */
+  position: relative;
+  padding-left: 60px;
+  padding-right: 60px;
+  box-sizing: border-box;
 }
+
+/* Login Form and Image */
 .login {
-  max-width: 400px; /* Limit width for form */
-  margin: auto; /* Center form */
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px; /* Rounded corners */
-  background-color: #ffffff; /* Background color changed to white */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px; /* Max width for large screens */
   background-color: #3C5916;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login h2 {
-  text-align: center; /* Center heading */
-  margin-bottom: 20px; /* Space below heading */
-  color: white;
+/* Login Form */
+.login-form {
+  width: 50%;
+  padding-right: 20px;
 }
 
-.form-group {
-  margin-bottom: 15px; /* Space below each form group */
-  opacity: 0; /* Initial hidden state for animation */
-  transform: translateY(30px); /* Initial position for animation */
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Animation transition */
+/* Login Image */
+.login-image {
+  width: 50%;
+  text-align: right;
 }
 
-.form-group.show {
-  opacity: 1; /* Fully visible when in view */
-  transform: translateY(0); /* Slide into view */
+.login-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.p {
+  color: #ddd;
+}
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+  .login {
+    flex-direction: column; /* Stack form and image vertically */
+    padding: 15px;
+  }
+
+  .login-form, .login-image {
+    width: 100%;
+  }
+  .login-image {
+    text-align: center;
+    margin-top: 20px;
+  }
 }
 
-label {
-  display: block; /* Block label for proper spacing */
-  margin-bottom: 5px; /* Space below label */
-}
+@media (max-width: 600px) {
+  .login-container {
+    padding: 15px;
+  }
 
-input {
-  width: 100%; /* Full width input */
-  padding: 10px; /* Padding inside input */
-  border: 1px solid #ccc; /* Input border */
-  border-radius: 4px; /* Rounded corners */
-}
+  .login h2 {
+    font-size: 1.5rem;
+  }
 
-.login-button {
-  width: 100%; /* Full width button */
-  padding: 10px;
-  background-color: #3C5916; /* Button color */
-  color: white;
-  border: none; /* No border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer on hover */
-  transition: background-color 0.3s; /* Smooth transition */
-  opacity: 0; /* Initial hidden state for animation */
-  transform: scale(0.9); /* Slightly shrunken initial state */
-}
-
-.login-button.show {
-  opacity: 1; /* Visible */
-  transform: scale(1); /* Grow to normal size */
-}
-
-.login-button:hover {
-  background-color: #000000; /* Darker button color on hover */
-}
-
-p {
-  text-align: center; /* Center the text */
-}
-
-/* Animation Classes */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1.0s ease-out, transform 1.0s ease-out;
-}
-
-.fade-in-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Footer Section */
-.footer-logo-image, .footer-links, .social-media {
-  opacity: 0;
-  transform: translateY(30px); /* Initial off-screen position */
-  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
-}
-
-.footer-logo-image.show, .footer-links.show, .social-media.show {
-  opacity: 1;
-  transform: translateY(0); /* Slide into view */
-}
-/* Footer Section */
-.footer {
-  text-align: center; /* Center footer text */
-  padding: 20px 0; /* Padding for footer */
-  background-color: #f1f1f1; /* Light background color */
-  margin-top: 20px;
-}
-
-.footer-links {
-  margin-top: 10px; /* Space above links */
-}
-
-.footer-links a {
-  margin: 0 15px; /* Space between links */
-  color: #f8f8f8; /* Link color */
-}
-/* src/pages/Home.css */
-
-/* Footer Section */
-.footer {
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Space between logo and links */
-  align-items: center; /* Center items vertically */
-  padding: 20px; /* Padding for footer */
-  background-color: #433D3D; /* Light background color */
-}
-
-.footer-logo {
-  flex: 1; /* Allow logo to take its own space */
-}
-
-.footer-logo-image {
-  max-width: 100px; /* Limit logo size */
-}
-
-.footer-links {
-  flex: 2; /* Center area for links */
-  text-align: center; /* Center text */
-}
-
-.footer-links a {
-  margin: 0 15px; /* Space between links */
-  color: #fdfdfd; /* Link color */
-}
-
-.social-media {
-  flex: 1; /* Space for social media icons */
-  display: flex; /* Use flexbox for social icons */
-  justify-content: flex-end; /* Align icons to the right */
-}
-
-.social-icon {
-  width: 30px; /* Set size for social icons */
-  margin-left: 10px; /* Space between icons */
+  .form-group {
+    margin-bottom: 10px;
+  }
 }

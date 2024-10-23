@@ -5,11 +5,10 @@ import './Courses.css';
 import { getAllCourses, getUserCourses } from './utils/api';
 
 const Courses = () => {
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState('all'); // Set default to 'all'
   const [courses, setCourses] = useState([]);
   const [userCourses, setUserCourses] = useState([]);
 
-  // Sample course data to illustrate the structure
   const sampleCourses = [
     {
       id: 1,
@@ -43,34 +42,35 @@ const Courses = () => {
     },
   ];
 
-  // Fetch all courses and user's progress when the component mounts
   useEffect(() => {
-    // Here you might want to use the sample courses if the API call fails
     getAllCourses()
       .then(data => {
-        setCourses(data.courses.length ? data.courses : sampleCourses); // Use sample data if no courses found
+        setCourses(data.courses.length ? data.courses : sampleCourses);
       })
       .catch(() => {
-        setCourses(sampleCourses); // Fallback to sample courses if fetch fails
+        setCourses(sampleCourses);
       });
 
     getUserCourses().then(data => setUserCourses(data.user_courses));
   }, []);
 
-  // Filter courses based on the active tab (ongoing, finished, unstarted)
   const getFilteredCourses = () => {
-    if (activeTab === 'all') return courses;
+    if (activeTab === 'unstarted') return courses;
     if (activeTab === 'ongoing') return userCourses.filter(c => c.progress < 100);
     if (activeTab === 'finished') return userCourses.filter(c => c.progress === 100);
-    if (activeTab === 'unstarted') return courses.filter(c => !userCourses.some(uc => uc.course === c.title));
+    if (activeTab === 'all') return courses.filter(c => !userCourses.some(uc => uc.course === c.title));
     return [];
   };
 
   return (
     <div className="courses-page">
+      {/* Main Navbar */}
+      <nav className="main-navbar">
+        <h1>WildlifEDU Courses</h1>
+      </nav>
+
+      {/* Sidebar turned Navbar for Tablets and Small Devices */}
       <aside className="sidebar">
-        <h2>WildlifEDU Courses</h2>
-        <img src="/profile.jpg" alt="profile" className="profile-image" />
         <ul>
           <li onClick={() => setActiveTab('all')} className={activeTab === 'all' ? 'active' : ''}>
             All Courses
@@ -85,7 +85,9 @@ const Courses = () => {
             Unstarted Courses
           </li>
         </ul>
-        <Link to="/settings" className="cta-button">Settings</Link>
+        <ul>
+          <Link to="/settings" className="cta-button">Settings</Link>
+        </ul>
       </aside>
 
       <main className="courses-content">
@@ -102,7 +104,6 @@ const Courses = () => {
               </Link>
               <p className="course-description">{course.description}</p>
               <Link to={`/courses/${course.id}`} className="view-course-button">View Course</Link>
-              {/* Optionally display progress */}
               {userCourses.some(uc => uc.course === course.title) && (
                 <p>Progress: {userCourses.find(uc => uc.course === course.title).progress}%</p>
               )}

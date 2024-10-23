@@ -1,8 +1,19 @@
 // src/Firebase.js
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 
 // Your Firebase configuration object
 const firebaseConfig = {
@@ -12,7 +23,7 @@ const firebaseConfig = {
   storageBucket: "wildlifedu-website.appspot.com",
   messagingSenderId: "252121860688",
   appId: "1:252121860688:web:c8bec950ce14ce8f7b5f55",
-  measurementId: "G-F5F9G7KD78"
+  measurementId: "G-F5F9G7KD78",
 };
 
 // Initialize Firebase
@@ -45,31 +56,42 @@ const login = async (email, password) => {
   }
 };
 
-// Firestore Functions for Contact Form
-const addContactFormEntry = async (entry) => {
+// Firestore Functions for Posts
+const addPost = async (post) => {
   try {
-    const docRef = await addDoc(collection(db, "contactForms"), entry);
-    console.log("Contact form entry added with ID: ", docRef.id);
+    const docRef = await addDoc(collection(db, "posts"), post);
+    console.log("Post added with ID: ", docRef.id);
     return docRef.id;
   } catch (error) {
-    console.error("Error adding contact form entry:", error.message);
+    console.error("Error adding post:", error.message);
     throw error;
   }
 };
 
-const getContactForms = async () => {
+const getPosts = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, "contactForms"));
-    const forms = [];
+    const querySnapshot = await getDocs(collection(db, "posts"));
+    const posts = [];
     querySnapshot.forEach((doc) => {
-      forms.push({ id: doc.id, data: doc.data() });
+      posts.push({ id: doc.id, ...doc.data() });
     });
-    return forms;
+    return posts;
   } catch (error) {
-    console.error("Error fetching contact forms:", error.message);
+    console.error("Error fetching posts:", error.message);
+    throw error;
+  }
+};
+
+const updatePost = async (id, updatedData) => {
+  try {
+    const postRef = doc(db, "posts", id);
+    await updateDoc(postRef, updatedData);
+    console.log("Post updated:", id);
+  } catch (error) {
+    console.error("Error updating post:", error.message);
     throw error;
   }
 };
 
 // Export Firebase services and functions
-export { auth, db, signUp, login, addContactFormEntry, getContactForms };
+export { auth, db, signUp, login, addPost, getPosts, updatePost };

@@ -1,5 +1,7 @@
+/* src/pages/ForumEvents.css */
+
 /* Main container for forum and events */
-.forum-events {
+.forum-events-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -91,12 +93,13 @@
 
 .event-cards {
   display: flex;
+  flex-wrap: wrap; /* Allow wrapping of event cards */
   gap: 20px;
   justify-content: space-between;
 }
 
 .event-card {
-  width: 30%;
+  flex: 1 1 30%; /* Flex-grow and shrink with a base width */
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -111,6 +114,7 @@
 
 .event-image {
   width: 100%;
+  height: auto; /* Maintain aspect ratio */
   border-radius: 8px;
   margin-bottom: 10px;
 }
@@ -144,46 +148,6 @@
 .view-events-button:hover {
   background-color: #333;
 }
-
-/* Footer */
-.footer {
-  margin-top: 50px;
-  padding: 20px;
-  background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-logo img {
-  width: 100px;
-}
-
-.footer-links a {
-  color: white;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.social-media {
-  display: flex;
-  gap: 10px;
-}
-
-.social-media a {
-  display: inline-block;
-}
-
-.social-icon {
-  width: 25px;
-  height: 25px;
-}
-
 /* Animations */
 @keyframes fadeIn {
   0% {
@@ -212,69 +176,42 @@
     transform: translateY(0);
   }
 }
-/* Footer Section */
-.footer-logo-image, .footer-links, .social-media {
-  opacity: 0;
-  transform: translateY(30px); /* Initial off-screen position */
-  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .forum-card {
+    flex-direction: column; /* Stack icon and content vertically */
+  }
+
+  .forum-card-content {
+    text-align: center; /* Center text for smaller screens */
+  }
+
+  .event-cards {
+    flex-direction: column; /* Stack event cards vertically */
+    align-items: center; /* Center cards */
+  }
+
+  .event-card {
+    width: 100%; /* Full width for event cards */
+  }
+
+  .footer {
+    flex-direction: column; /* Stack footer elements */
+    align-items: center; /* Center footer content */
+  }
 }
 
-.footer-logo-image.show, .footer-links.show, .social-media.show {
-  opacity: 1;
-  transform: translateY(0); /* Slide into view */
-}
-/* Footer Section */
-.footer {
-  text-align: center; /* Center footer text */
-  padding: 20px 0; /* Padding for footer */
-  background-color: #f1f1f1; /* Light background color */
-  margin-top: 20px;
-}
+@media (max-width: 480px) {
+  .forum-header h2,
+  .forum-section h3,
+  .events-section h3 {
+    font-size: 1.5em; /* Smaller headings for smaller devices */
+  }
 
-.footer-links {
-  margin-top: 10px; /* Space above links */
-}
-
-.footer-links a {
-  margin: 0 15px; /* Space between links */
-  color: #f8f8f8; /* Link color */
-}
-/* src/pages/Home.css */
-
-/* Footer Section */
-.footer {
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Space between logo and links */
-  align-items: center; /* Center items vertically */
-  padding: 20px; /* Padding for footer */
-  background-color: #433D3D; /* Light background color */
-}
-
-.footer-logo {
-  flex: 1; /* Allow logo to take its own space */
-}
-
-.footer-logo-image {
-  max-width: 100px; /* Limit logo size */
-}
-
-.footer-links {
-  flex: 2; /* Center area for links */
-  text-align: center; /* Center text */
-}
-
-.footer-links a {
-  margin: 0 15px; /* Space between links */
-  color: #fdfdfd; /* Link color */
-}
-
-.social-media {
-  flex: 1; /* Space for social media icons */
-  display: flex; /* Use flexbox for social icons */
-  justify-content: flex-end; /* Align icons to the right */
-}
-
-.social-icon {
-  width: 30px; /* Set size for social icons */
-  margin-left: 10px; /* Space between icons */
+  .join-forum-button,
+  .view-events-button {
+    width: 100%; /* Full-width buttons */
+    text-align: center; /* Center button text */
+  }
 }

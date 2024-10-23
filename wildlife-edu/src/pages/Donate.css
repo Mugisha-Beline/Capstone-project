@@ -49,14 +49,3 @@
     background-color: #45a049; /* Darker green on hover */
   }
   
- /* Footer Section */
-.footer-logo-image, .footer-links, .social-media {
-  opacity: 0;
-  transform: translateY(30px); /* Initial off-screen position */
-  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
-}
-
-.footer-logo-image.show, .footer-links.show, .social-media.show {
-  opacity: 1;
-  transform: translateY(0); /* Slide into view */
-}

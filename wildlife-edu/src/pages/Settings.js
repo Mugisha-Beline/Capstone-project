@@ -52,13 +52,14 @@ const Settings = () => {
   return (
     <div className="settingspage">
       <div className="settings-page">
+        {/* Sidebar Menu or Top Menu based on screen size */}
         <aside className="sidebar">
-          <ul>
+          <ul className="profile-info">
             <div className="profile-image-container">
               <img src={profilePicture} alt="profile" className="profile-image" />
             </div>
           </ul>
-          <ul>
+          <ul className="menu-options">
             <li onClick={() => setActiveTab('account')} className={activeTab === 'account' ? 'active' : ''}>
               Account Settings
             </li>
@@ -69,9 +70,10 @@ const Settings = () => {
               Change Password
             </li>
           </ul>  
-         <Link to="/courses" className="cta-button">Courses</Link>
+          <Link to="/courses" className="cta-button">Courses</Link>
         </aside>
 
+        {/* Main content */}
         <main className="settings-content">
           {activeTab === 'account' && (
             <div className="account-settings">
@@ -147,9 +149,6 @@ const Settings = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="save-button">
-                  Change Password
-                </button>
               </form>
             </div>
           )}
@@ -161,29 +160,6 @@ const Settings = () => {
           </div>
         </main>
       </div>
-
-      {/* Footer Section */}
-      <footer className="footer">
-        <div className="footer-logo">
-          <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" className="footer-logo-image" />
-        </div>
-        <div className="footer-links">
-          <Link to="/Donate">Do you want to support us?</Link>
-          <Link to="/Privacy">Privacy Policy</Link>
-          <Link to="/Terms">Terms of Service</Link>
-        </div>
-        <div className="social-media">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src="/facebook.jpg" alt="Facebook" className="social-icon" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <img src="/twitter.jpg" alt="Twitter" className="social-icon" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <img src="/instagram.jpg" alt="Instagram" className="social-icon" />
-          </a>
-        </div>
-      </footer>
     </div>
   );
 };

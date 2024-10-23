@@ -2,48 +2,52 @@
 
 .courses-page {
   display: flex;
-  height: 100vh; /* Full height for the sidebar layout */
+  flex-direction: column; /* Stack sidebar and content vertically */
+  height: auto; /* Adjust height */
+}
+
+.main-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333; /* Dark background */
+  color: #f8f8f8; /* Light text color */
+  padding: 10px 20px; /* Padding for navbar */
 }
 
 .sidebar {
-  width: 250px; /* Fixed width for sidebar */
-  background-color: #3C5916; /* Dark background */
-  color: #f8f8f8; /* Light text color */
+  display: flex; /* Flex container */
+  flex-direction: column; /* Vertical arrangement */
   padding: 20px; /* Padding inside sidebar */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Shadow for sidebar */
-  transition: transform 0.3s ease; /* Smooth transition for sidebar */
-}
-
-/* Add this class for the sidebar image centering */
-.profile-image-container {
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically, if necessary */
-  margin-bottom: 20px; /* Space below the image container */
-}
-
-.profile-image {
-  width: 80%; /* Responsive width */
-  max-width: 100px; /* Limit the maximum width */
-  border-radius: 50%; /* Circular profile image */
 }
 
 .sidebar h2 {
   font-size: 1.5em;
-  margin-bottom: 20px;
   color: white;
+  margin-bottom: 10px;
+}
+
+.sidebar img {
+  width: 80%; /* Responsive width */
+  max-width: 100px; /* Limit the maximum width */
+  border-radius: 50%; /* Circular profile image */
+  margin-bottom: 20px; /* Space below the image */
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
-  margin-left: 20px;
+  margin: 0; /* Remove margin for ul */
 }
 
 .sidebar li {
   padding: 10px 15px;
   cursor: pointer; /* Pointer on hover */
   transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+  margin-bottom: 10px; /* Space between list items */
+  background-color: #3C5916; /* Default background color */
+  color: #f8f8f8; /* Light text color */
+  border-radius: 8px; /* Rounded corners for the buttons */
 }
 
 .sidebar li:hover {
@@ -52,12 +56,10 @@
 }
 
 .sidebar .active {
-  background-color: #485A48; /* Active tab color */
-  border-radius: 15px;
+  background-color: #2E4D2E; /* Darker green for active tab */
 }
 
 .courses-content {
-  flex: 1; /* Take up remaining space */
   padding: 20px; /* Padding for content area */
   background-color: #f9f9f9; /* Light background */
   overflow-y: auto; /* Allow scrolling for content */
@@ -73,20 +75,6 @@
 .courses-header h1 {
   font-size: 2em;
   color: #3C5916; /* Dark text color */
-}
-
-.add-course-button {
-  background-color: #485A48; /* Green button */
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 15px;
-  text-decoration: none; /* Remove underline */
-  transition: background-color 0.3s; /* Smooth hover effect */
-}
-
-.add-course-button:hover {
-  background-color: #3C5916; /* Darker green on hover */
 }
 
 .courses-grid {
@@ -141,14 +129,52 @@
   background-color: #005f73; /* Darker blue on hover */
 }
 
-/* Footer Section */
-.footer-logo-image, .footer-links, .social-media {
-  opacity: 0;
-  transform: translateY(30px); /* Initial off-screen position */
-  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .courses-page {
+    flex-direction: column; /* Stack sidebar and content vertically */
+  }
+
+  .sidebar {
+    width: 100%; /* Full width for sidebar */
+    box-shadow: none; /* Remove shadow */
+    flex-direction: row; /* Arrange items in a row */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: space-around; /* Space items evenly */
+  }
+
+  .sidebar li {
+    flex: 1; /* Equal space for items */
+    text-align: center; /* Center text */
+  }
+
+  .courses-header h1 {
+    font-size: 1.5em; /* Smaller header size on mobile */
+  }
+
+  .course-image {
+    height: 120px; /* Smaller height for images */
+  }
 }
 
-.footer-logo-image.show, .footer-links.show, .social-media.show {
-  opacity: 1;
-  transform: translateY(0); /* Slide into view */
+@media (max-width: 480px) {
+  .sidebar h2 {
+    font-size: 1.2em; /* Smaller font for sidebar title */
+  }
+
+  .sidebar li {
+    padding: 8px 10px; /* Reduce padding for list items */
+  }
+
+  .courses-header h1 {
+    font-size: 1.3em; /* Even smaller header size on smaller screens */
+  }
+
+  .course-title {
+    font-size: 1.2em; /* Smaller course title size */
+  }
+
+  .course-description {
+    font-size: 0.9em; /* Smaller font for description */
+  }
 }
