@@ -48,7 +48,9 @@ h2 {
   padding: 15px; /* Space inside the item */
   background-color: #f9f9f9; /* Light background for details */
 }
-
+.event-details p {
+  color: black;
+}
 /* Back Button */
 .back-button {
   display: inline-block; /* Block for button */

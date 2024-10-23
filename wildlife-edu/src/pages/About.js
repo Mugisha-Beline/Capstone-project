@@ -94,13 +94,13 @@ const About = () => {
       <div className="about about-fade-in-up">
         <div className="background-section">
           <div className="content">
+          <h1>Let’s Care Our Wildlife Together!</h1>
             <Link to="/login" className="cta-button event-link">Upcoming Events</Link>
-            <h1>Let’s Care Our Wildlife Together!</h1>
           </div>
         </div>
         <div>
           <h3>About Us</h3>
-          <p>
+          <p className='p'>
             Endangered Animals in Rwanda’s Akagera National Park is the particular focus of the study, and it will be undertaken in partnership with local communities, nature care organizations, as well as experts.
           </p>
         </div>
@@ -108,12 +108,12 @@ const About = () => {
         <div className="about-images">
           <div className="about-image about-fade-in-left">
             <h3>Our Mission</h3>
-            <p>We believe that education is the key to fostering a deeper understanding of wildlife.</p>
+            <p className='p'>We believe that education is the key to fostering a deeper understanding of wildlife.</p>
             <img src="/zebra.jpg" alt="Mission" />
           </div>
           <div className="about-image about-fade-in-right">
             <h3>Our Vision</h3>
-            <p>Join our community today and start your journey toward making a difference!</p>
+            <p className='p'>Join our community today and start your journey toward making a difference!</p>
             <img src="/elephants.jpg" alt="Vision" />
           </div>
         </div>

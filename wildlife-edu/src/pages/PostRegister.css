@@ -2,10 +2,6 @@
 
 /* Background section */
 .registered {
-  background-image: url('../assets/images/registered.jpg');
-  background-size: cover; /* Make the background image cover the entire container */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
   min-height: 100vh; /* Ensure the container takes up full vertical height */
   display: flex;
   justify-content: center;
@@ -25,7 +21,9 @@
   border-radius: 8px;
   text-align: center;
 }
-
+.post-register-container h2 {
+  color: white;
+}
 /* Button styles */
 .post-register-button {
   display: inline-block;
