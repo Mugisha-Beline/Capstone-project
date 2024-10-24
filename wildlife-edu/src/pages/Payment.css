@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+/* Add this rule to set the color of all <p> elements in the Donate page to black */
+.donate p {
+  color: black; /* Set text color to black */
+}
+
 .donation-cards {
   display: flex;
   justify-content: center;

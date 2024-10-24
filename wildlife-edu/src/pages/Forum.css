@@ -64,7 +64,9 @@
   font-size: 0.8em;
   color: gray;
 }
-
+.forum-section p{
+  color: black;
+}
 .like-dislike {
   display: flex;
   justify-content: space-between; /* Space between buttons */

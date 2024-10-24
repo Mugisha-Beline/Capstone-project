@@ -56,10 +56,6 @@ const Donate = () => {
           </Link>
         </div>
       </div>
-      {/* Footer Section */}
-      <footer className="footer">
-        {/* Footer contents remain the same */}
-      </footer>
     </div>
   );
 };

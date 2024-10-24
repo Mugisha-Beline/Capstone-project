@@ -1,9 +1,9 @@
-/* src/pages/About.css */
 /* General Styles */
 .Aboutus {
   max-width: 1200px;
   margin: 0 auto; /* Centers the content on the page */
   padding: 0 20px; /* Adds some padding on the sides */
+  overflow-x: hidden; /* Prevents horizontal scroll */
 }
 
 .about {
@@ -15,14 +15,17 @@ h1 {
   color: white;
   margin-bottom: 20px;
 }
+
 h2 {
-  color:black;
+  color: black;
 }
+
 h3 {
   text-align: center;
-  color:#3C5916;
+  color: #3C5916;
   margin-bottom: 20px;
 }
+
 p {
   text-align: center;
   color: black;
@@ -88,9 +91,10 @@ img {
 
 /* Educational Content Section */
 .educational-content {
-  background-color:#3C5916 ;
+  background-color: #3C5916;
   padding: 50px 20px;
 }
+
 .content-cards {
   display: flex;
   justify-content: space-around;
@@ -221,22 +225,26 @@ textarea {
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
 .call-to-action p {
   color: white;
 }
+
 .about-fade-in-left p {
   transform: translateX(-20px);
   color: black;
 }
+
 .about-fade-in-left p {
   color: black;
-  
 }
+
 .about-fade-in-right p {
   transform: translateX(20px);
   color: black;
   font-size: 18px;
 }
+
 .about-fade-in-down p {
   color: white;
   font-size: 18px;
@@ -246,12 +254,20 @@ textarea {
   color: black;
   font-size: 18px;
 }
+
 .show {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  /* Add margins for tablets and smaller screens */
+  .Aboutus {
+    padding: 0 40px;
+  }
+}
+
 @media (max-width: 768px) {
   .about-images {
     flex-direction: column;
@@ -281,5 +297,10 @@ textarea {
   form {
     max-width: 100%;
     margin-bottom: 20px;
+  }
+
+  /* Add padding on the sides for smaller screens */
+  .Aboutus {
+    padding: 0 20px;
   }
 }

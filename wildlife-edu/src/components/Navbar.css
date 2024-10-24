@@ -89,7 +89,25 @@ body {
   font-size: 30px;
   color: white;
 }
+.search-form {
+  display: flex; /* Align search input and button */
+  align-items: center;
+}
 
+.search-button {
+  padding: 5px 10px; /* Add padding */
+  background-color: #5a8e3e; /* Button color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  margin-left: 5px; /* Space between input and button */
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.search-button:hover {
+  background-color: #4c7b32; /* Darker shade on hover */
+}
 /* MEDIA QUERIES */
 
 /* Large screens (desktops/laptops) */

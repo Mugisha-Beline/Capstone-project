@@ -1,30 +1,47 @@
 // src/pages/Settings.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth'; // Import Firebase methods
-import { auth } from './Firebase'; // Import Firebase auth instance
-import './Home.css';
-import './Settings.css'; // Import the CSS for styling
+import { reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth'; // Firebase Authentication
+import { auth, db } from './Firebase'; // Import db instead of firestore
+import { doc, updateDoc } from 'firebase/firestore'; // Firestore methods
+import './Settings.css';
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState('account'); // Set default tab to 'account'
-  const [profilePicture, setProfilePicture] = useState('/profile.jpg'); // Default profile picture
-  const [name, setName] = useState('John Doe'); // Default name
-  const [emailNotifications, setEmailNotifications] = useState(true); // Default notification preference
-  const [oldPassword, setOldPassword] = useState(''); // Old password
-  const [newPassword, setNewPassword] = useState(''); // New password
-  const [confirmNewPassword, setConfirmNewPassword] = useState(''); // Confirm new password
+  const [activeTab, setActiveTab] = useState('account');
+  const [profilePicture, setProfilePicture] = useState('/profile.jpg');
+  const [name, setName] = useState('John Doe');
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [message, setMessage] = useState(''); // To display success message
+
+  const user = auth.currentUser; // Get the current logged-in user
 
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setProfilePicture(URL.createObjectURL(file)); // Update the profile picture with the uploaded image
+      setProfilePicture(URL.createObjectURL(file));
     }
   };
 
-  const handleSaveChanges = () => {
-    // Save changes to Firebase (this should include name, profile picture, and notification preferences)
-    alert('Changes saved successfully!');
+  const handleSaveChanges = async () => {
+    try {
+      // Reference to the Firestore user document
+      const userDoc = doc(db, 'users', user.uid);
+
+      // Update Firestore with name and notification preferences
+      await updateDoc(userDoc, {
+        name: name,
+        emailNotifications: emailNotifications,
+        profilePicture: profilePicture,
+      });
+
+      // Show success message after saving
+      setMessage('Your changes have been saved successfully.');
+    } catch (error) {
+      alert('Error saving changes: ' + error.message);
+    }
   };
 
   const handlePasswordChange = async (e) => {
@@ -36,23 +53,22 @@ const Settings = () => {
     }
 
     try {
-      // Re-authenticate the user with the old password before allowing password change
-      const user = auth.currentUser;
+      // Re-authenticate the user before changing password
       const credential = EmailAuthProvider.credential(user.email, oldPassword);
-      await reauthenticateWithCredential(user, credential); // Re-authenticate the user
+      await reauthenticateWithCredential(user, credential);
 
-      // Update the password
+      // Update the password in Firebase Authentication
       await updatePassword(user, newPassword);
-      alert('Password changed successfully!');
+      setMessage('Your password has been changed successfully.');
     } catch (error) {
-      alert(error.message); // Handle errors (e.g., wrong old password, network issues)
+      alert(error.message);
     }
   };
 
   return (
     <div className="settingspage">
       <div className="settings-page">
-        {/* Sidebar Menu or Top Menu based on screen size */}
+        {/* Sidebar / Toggle menu for small screens */}
         <aside className="sidebar">
           <ul className="profile-info">
             <div className="profile-image-container">
@@ -73,7 +89,7 @@ const Settings = () => {
           <Link to="/courses" className="cta-button">Courses</Link>
         </aside>
 
-        {/* Main content */}
+        {/* Main content for settings */}
         <main className="settings-content">
           {activeTab === 'account' && (
             <div className="account-settings">
@@ -149,6 +165,7 @@ const Settings = () => {
                     required
                   />
                 </div>
+                <button type="submit" className="save-button">Save Password</button>
               </form>
             </div>
           )}
@@ -158,6 +175,7 @@ const Settings = () => {
               Save Changes
             </button>
           </div>
+          {message && <div className="notification-message">{message}</div>}
         </main>
       </div>
     </div>

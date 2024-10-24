@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css'; 
 import './Forum.css';
-import { auth, addPost, getPosts, updatePost } from './Firebase'; // Import Firebase authentication and Firestore functions
+import { auth, addPost, getPosts, updatePost } from './Firebase'; // Import Firebase functions
 
 const Forum = () => {
   const [posts, setPosts] = useState([]); // Initialize with an empty array
@@ -53,7 +53,7 @@ const Forum = () => {
       // Add the post to Firestore
       await addPost(newPostData);
       setPosts([...posts, newPostData]); // Update local state
-      setNewPost('');
+      setNewPost(''); // Clear the input
     }
   };
 

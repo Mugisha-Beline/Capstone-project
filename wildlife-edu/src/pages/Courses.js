@@ -1,13 +1,13 @@
-// src/components/Courses/Courses.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Courses.css';
 import { getAllCourses, getUserCourses } from './utils/api';
 
 const Courses = () => {
-  const [activeTab, setActiveTab] = useState('all'); // Set default to 'all'
+  const [activeTab, setActiveTab] = useState('all');
   const [courses, setCourses] = useState([]);
   const [userCourses, setUserCourses] = useState([]);
+  const [menuOpen, setMenuOpen] = useState(false); // Toggle for mobile
 
   const sampleCourses = [
     {
@@ -62,33 +62,48 @@ const Courses = () => {
     return [];
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); // Toggle the menu state
+  };
+
+  const handleMenuClick = (tab) => {
+    setActiveTab(tab);
+    setMenuOpen(false); // Close menu after clicking an option
+  };
+
   return (
     <div className="courses-page">
       {/* Main Navbar */}
       <nav className="main-navbar">
         <h1>WildlifEDU Courses</h1>
+        {/* Hamburger Menu Icon */}
+        <div className="hamburger-menu" onClick={toggleMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </nav>
 
-      {/* Sidebar turned Navbar for Tablets and Small Devices */}
-      <aside className="sidebar">
+      {/* Horizontal Navigation Bar */}
+      <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
         <ul>
-          <li onClick={() => setActiveTab('all')} className={activeTab === 'all' ? 'active' : ''}>
+          <li onClick={() => handleMenuClick('all')} className={activeTab === 'all' ? 'active' : ''}>
             All Courses
           </li>
-          <li onClick={() => setActiveTab('ongoing')} className={activeTab === 'ongoing' ? 'active' : ''}>
+          <li onClick={() => handleMenuClick('ongoing')} className={activeTab === 'ongoing' ? 'active' : ''}>
             Ongoing Courses
           </li>
-          <li onClick={() => setActiveTab('finished')} className={activeTab === 'finished' ? 'active' : ''}>
+          <li onClick={() => handleMenuClick('finished')} className={activeTab === 'finished' ? 'active' : ''}>
             Finished Courses
           </li>
-          <li onClick={() => setActiveTab('unstarted')} className={activeTab === 'unstarted' ? 'active' : ''}>
+          <li onClick={() => handleMenuClick('unstarted')} className={activeTab === 'unstarted' ? 'active' : ''}>
             Unstarted Courses
           </li>
         </ul>
         <ul>
           <Link to="/settings" className="cta-button">Settings</Link>
         </ul>
-      </aside>
+      </div>
 
       <main className="courses-content">
         <header className="courses-header">
