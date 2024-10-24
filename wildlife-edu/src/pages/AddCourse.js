@@ -1,6 +1,7 @@
 // src/components/Courses/AddCourse.js
 import React, { useState } from 'react';
 import { addCourse } from './utils/api';
+import './Home.css';
 import './AddCourse.css';
 
 const AddCourse = () => {

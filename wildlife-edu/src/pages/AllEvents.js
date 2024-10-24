@@ -1,6 +1,7 @@
 // src/pages/AllEvents.js
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Home.css';
 import './AllEvents.css'; // Assuming a new CSS file for this page
 
 const AllEvents = () => {

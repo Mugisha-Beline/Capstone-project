@@ -1,6 +1,7 @@
 // src/pages/Pay.js
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import './Home.css';
 import './Pay.css';
 
 const Pay = () => {

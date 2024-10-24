@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css'; 
-import './About.css';
 import './Donate.css';
 
 const Payment = () => {

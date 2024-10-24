@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { reauthenticateWithCredential, EmailAuthProvider, updatePassword } from 'firebase/auth'; // Firebase Authentication
 import { auth, db } from './Firebase'; // Import db instead of firestore
 import { doc, updateDoc } from 'firebase/firestore'; // Firestore methods
+import './Home.css';
 import './Settings.css';
 
 const Settings = () => {
