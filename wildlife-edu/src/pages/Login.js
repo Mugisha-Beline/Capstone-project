@@ -17,18 +17,30 @@ const Login = () => {
     setErrorMessage(''); // Reset error message before trying to log in
     setSuccessMessage(''); // Reset success message
 
+    // Validate email format
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setErrorMessage("Please enter a valid email address."); // Invalid email format
+      return;
+    }
+
     try {
       await login(email, password);
       setSuccessMessage("You have logged in successfully!"); // Set success message
       navigate('/post-register'); // Navigate after a successful login
     } catch (error) {
       // Handle specific error codes
-      if (error.code === 'auth/user-not-found') {
-        setErrorMessage("User not found. Please register before logging in."); // User does not exist
-      } else if (error.code === 'auth/wrong-password') {
-        setErrorMessage("Incorrect password. Please try again."); // Wrong password
-      } else {
-        setErrorMessage(error.message); // Generic error message for other errors
+      switch (error.code) {
+        case 'auth/user-not-found':
+          setErrorMessage("User not found. Please register before logging in."); // User does not exist
+          break;
+        case 'auth/wrong-password':
+          setErrorMessage("Incorrect username or password. Please try again."); // Wrong password
+          break;
+        case 'auth/invalid-credential':
+          setErrorMessage("Invalid email or password format. Please check your credentials."); // Invalid credentials
+          break;
+        default:
+          setErrorMessage(error.message); // Generic error message for other errors
       }
     }
   };

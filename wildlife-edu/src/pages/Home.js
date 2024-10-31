@@ -173,13 +173,6 @@ const About = () => {
           </form>
         </div>
       </section>
-        
-      {/* Call to Action Section */}
-      <section className="call-to-action about-fade-in-up">
-        <h2>Join Our Community</h2>
-        <p>Engage with other wildlife enthusiasts and experts.</p>
-        <Link to="/login" className="cta-button">Join the Forum</Link>
-      </section>
     </div>
   );
 };

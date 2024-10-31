@@ -52,6 +52,7 @@ const Navbar = () => {
 
         {/* Navbar links */}
         <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+        <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About Us</Link></li>
           <li><Link to="/login">Login/Signup</Link></li>
           <li><Link to="/forum-events">Forum + Events</Link></li>
