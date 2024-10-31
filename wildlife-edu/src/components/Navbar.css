@@ -17,7 +17,7 @@ body {
   background-color: #3C5916;
   color: white;
   width: 100%;                   /* Ensures navbar takes full width */
-  max-width: 1200px;             /* Limits the width for larger screens */
+  max-width: 1400px;             /* Limits the width for larger screens */
   margin: 0 auto;                /* Centers navbar */
 }
 

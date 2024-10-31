@@ -12,6 +12,10 @@
   padding-left: 60px;
   padding-right: 60px;
   box-sizing: border-box;
+  background-image: url('/leopard.jpg'); /* Update the path to your image */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
 /* Login Form and Image */
@@ -75,4 +79,14 @@
   .form-group {
     margin-bottom: 10px;
   }
+}
+.error-message {
+  color: rgb(255, 255, 255); /* Change the text color to red */
+  margin-top: 10px; /* Add some margin above */
+  font-weight: bold; /* Make the text bold */
+}
+.success-message {
+  color: rgb(160, 243, 104); /* Change the text color to green */
+  margin-top: 10px; /* Add some margin above */
+  font-weight: bold; /* Make the text bold */
 }

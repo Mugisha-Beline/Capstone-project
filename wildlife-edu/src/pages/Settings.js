@@ -166,7 +166,6 @@ const Settings = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="save-button">Save Password</button>
               </form>
             </div>
           )}
