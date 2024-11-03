@@ -1,25 +1,55 @@
-/* src/pages/Home.css */
+/* Full-page background for Home */
+body, .home {  
+  background-image: url('/background.jpg'); /* Update with the correct path */
+  background-size: cover; /* Cover the full screen */
+  background-position: center; /* Center the image */
+  background-attachment: fixed; /* Fixed during scroll */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+/* Semi-transparent overlay */
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity by changing the last value */
+  z-index: 1; /* Place overlay behind content */
+}
 
+/* Ensure content appears above overlay */
+.home > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Home Main Container */
 .home {
-  font-family: Arial, sans-serif; /* Update with your preferred font */
-  color: #f8f8f8;                    /* Default text color */
+  font-family: Arial, sans-serif; /* Base font */
+  color: #f8f8f8; /* Text color */
   padding: 20px;
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start; /* Align content at the top */
 }
-.content h1 {
-  font-size: 60px;
-}
+
 /* Hero Section */
 .background-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
-  background-image: url('/background.jpg') no-repeat center center; /* Update with your image path */
-  background-size: cover;
-  color: white;
+  height: 100vh; /* Full viewport height for hero */
   text-align: center;
-  padding: 100px 20px; /* Adjust as necessary */
+  padding: 100px 20px; /* Adjust spacing */
+  background-color: rgba(0, 0, 0, 0.5); /* Optional dark overlay */
+}
+
+.content h1 {
+  font-size: 60px;
 }
 
 .hero h1 {
@@ -32,8 +62,9 @@
   margin-bottom: 2rem; /* Space between subtitle and button */
 }
 
+/* Call to Action Button */
 .cta-button {
-  background-color: #3C5916; /* Button color */
+  background-color: #3C5916; /* Button background */
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -42,7 +73,7 @@
 }
 
 .cta-button:hover {
-  background-color: #000000; /* Darker shade for hover */
+  background-color: #000000; /* Darker shade on hover */
 }
 
 /* Educational Content Section */
@@ -58,7 +89,7 @@
 .content-cards {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
 .content-card {
@@ -67,17 +98,19 @@
   border-radius: 5px;
   padding: 20px;
   margin: 10px;
-  width: 250px; /* Card width */
+  width: 250px; /* Width for each card */
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.1s;
 }
+
 .content-card img.card-image {
-  width: 100%; /* Make the image fit the width of the card */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 5px; /* Optional: rounded corners */
+  width: 100%; /* Full card width */
+  height: auto; /* Keep aspect ratio */
+  border-radius: 5px; /* Rounded corners */
 }
+
 .content-card:hover {
-  transform: scale(1.05); /* Scale effect on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
   color: #3C5916;
 }
 
@@ -99,8 +132,6 @@
   font-size: 36px;
 }
 
-/* src/pages/Home.css */
-
 /* About Section */
 .about {
   margin: 40px 0;
@@ -108,48 +139,50 @@
 
 .about-images {
   display: flex;
-  justify-content: space-around; /* Space out the images */
-  margin-top: 20px; /* Space between text and images */
+  justify-content: space-around; /* Space out images */
+  margin-top: 20px;
 }
 
 .about-image {
-  flex: 1; /* Allow images to take equal space */
-  text-align: center; /* Center text under images */
-  padding: 10px; /* Space around content */
+  flex: 1; /* Allow equal space for each image */
+  text-align: center;
+  padding: 10px;
 }
 
 .about-image img {
-  max-width: 100%; /* Responsive image */
+  max-width: 100%; /* Responsive image size */
   height: auto; /* Maintain aspect ratio */
   border-radius: 8px; /* Rounded corners */
 }
 
 /* Contact Section */
 .contact {
-  margin: 40px 0; /* Space around contact section */
+  margin: 40px 0;
 }
 
 .contact-content {
   display: flex; /* Flex layout for image and form */
-  align-items: center; /* Center vertically */
+  align-items: center; /* Center content vertically */
 }
 
 .contact-image {
   flex: 1; /* Allow image to take equal space */
-  max-width: 600px; /* Limit width */
+  max-width: 600px; /* Limit image width */
   border-radius: 8px; /* Rounded corners */
   margin-right: 20px; /* Space between image and form */
 }
+
+/* Form Group Styling */
 .form-group {
   margin-bottom: 15px; /* Space below each form group */
   opacity: 0; /* Initial hidden state for animation */
   transform: translateY(30px); /* Initial off-screen position */
-  transition: opacity 1s ease-out, transform 1s ease-out; /* Animation transition */
-  color: white;
+  transition: opacity 1s ease-out, transform 1s ease-out; /* Transition effect */
+  color: white; /* Form text color */
 }
 
- /* Initial hidden state */
- .fade-in-up {
+/* Animation Classes */
+.fade-in-up {
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 1s ease-out, transform 1s ease-out;

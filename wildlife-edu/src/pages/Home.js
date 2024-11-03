@@ -96,7 +96,7 @@ const About = () => {
           <div className="content">
             <h1>Let’s Care About Our Wildlife Together!</h1>
           </div>
-          <Link to="/login" className="cta-button">Upcoming Events</Link>
+          <Link to="/all-events" className="cta-button">Upcoming Events</Link>
         </div>
       </div>
 

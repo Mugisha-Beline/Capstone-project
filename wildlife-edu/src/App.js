@@ -3,7 +3,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer'; // Import the Footer component
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
@@ -22,7 +22,7 @@ import Pay from './pages/Pay';
 function App() {
   return (
     <Router>
-      <div className="app-container"> {/* Added app-container div for flex layout */}
+      <div className="app-container"> {/* Makes full viewport height */}
         <Navbar />
         <div className="main-content">
           <Routes>
@@ -42,7 +42,7 @@ function App() {
             <Route path="*" element={<NotFound />} /> {/* Catch-all for undefined routes */}
           </Routes>
         </div>
-        <Footer /> {/* Add the Footer here */}
+        <Footer /> {/* Footer placed outside of main content */}
       </div>
     </Router>
   );
