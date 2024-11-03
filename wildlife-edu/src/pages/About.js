@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from './Firebase'; 
 import { collection, addDoc } from 'firebase/firestore'; 
-import './Home.css';
 import './About.css';
 import './Contact.css';
 
