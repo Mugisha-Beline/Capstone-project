@@ -1,0 +1,34 @@
+/* 1.css: Styles for Conservation Course */
+
+/* General Layout */
+.conservation-course {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Course Topics */
+.topics-section {
+    margin-bottom: 20px;
+}
+
+.topic {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.topic h3 {
+    color: #4caf50;
+    margin-bottom: 5px;
+}
+
+.topic p {
+    color: #555;
+    margin-bottom: 10px;
+}
+
