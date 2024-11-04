@@ -16,34 +16,12 @@ const Navbar = () => {
     setSearchTerm(event.target.value);
   };
 
-  // Handle search submission
-  const handleSearchSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission
-    if (searchTerm.trim()) {
-      const searchUrl = `https://www.google.com/search?q=wildlife+${encodeURIComponent(searchTerm)}`;
-      window.open(searchUrl, '_blank'); // Open in a new tab
-      setSearchTerm(''); // Clear the search input after submission
-    }
-  };
-
   return (
     <div>
       <nav className="navbar">
         <div className="navbar-logo">
           <img src="/WildlifeEduLogo.jpg" alt="Wildlife EDU Logo" />
         </div>
-
-        {/* Search box with button */}
-        <form onSubmit={handleSearchSubmit} className="search-form">
-          <input 
-            type="text" 
-            placeholder="Search Wildlife Terms..." 
-            className="search-box" 
-            value={searchTerm} 
-            onChange={handleSearchChange} 
-          />
-          <button type="submit" className="search-button">Search</button>
-        </form>
 
         {/* Menu toggle button for small screens */}
         <div className="menu-toggle" onClick={toggleMenu}>

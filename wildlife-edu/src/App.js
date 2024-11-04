@@ -19,7 +19,7 @@ import Payment from './pages/Donate';
 import Settings from './pages/Settings'; 
 import Pay from './pages/Pay';
 import Course1 from './pages/Course1';
-
+import Course2 from './pages/Course2';
 function App() {
   return (
     <Router>
@@ -41,6 +41,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/pay" element={<Pay />} />
             <Route path="/course1" element={<Course1 />} />
+            <Route path="/course2" element={<Course2 />} />
             <Route path="*" element={<NotFound />} /> {/* Catch-all for undefined routes */}
           </Routes>
         </div>
