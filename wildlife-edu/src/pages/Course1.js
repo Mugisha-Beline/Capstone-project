@@ -1,4 +1,4 @@
-// 1.js: Conservation Course React Component
+// Course1.js: Conservation Course React Component
 import React, { useState } from 'react';
 import './1.css';
 
@@ -46,6 +46,7 @@ function ConservationCourse() {
             ] 
         }
     ]);
+
     const [forumPosts, setForumPosts] = useState([]);
     const [totalDonations, setTotalDonations] = useState(0);
     const [donationAmount, setDonationAmount] = useState("");
@@ -78,6 +79,17 @@ function ConservationCourse() {
     return (
         <div className="conservation-course">
             <h1>Conservation Course</h1>
+
+            {/* YouTube Link Section */}
+            <section className="youtube-link-section" onClick={() => window.open('https://www.youtube.com/watch?v=qKgRbkCkRFY', '_blank')}>
+                <div className="youtube-link-card">
+                    <img src="background.jpg" alt="Watch Conservation Video" className="youtube-thumbnail" />
+                    <div className="overlay">
+                        <span className="play-button">&#9658;</span>
+                        <p>Watch Conservation Video on YouTube</p>
+                    </div>
+                </div>
+            </section>
 
             {/* Course Topics Section */}
             <section className="topics-section">
