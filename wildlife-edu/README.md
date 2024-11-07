@@ -3,10 +3,10 @@
 ## Let's Care for Our Wildlife Together
 
 ### Description
-WildlifeEDU is an online education platform focused on animal conservation, with special attention to endangered species in Africa. The main goal of this platform is to collaborate with local communities, conservation organizations, and specialists to promote sustainable wildlife conservation. Additionally, it encourages eco-tourism by actively involving people in conservation efforts. WildlifeEDU leverages digital technology and innovation to support various conservation projects, serving as a blueprint for future conservation efforts within similar ecosystems.
+WildlifEdu is an online education platform focused on animal conservation, with special attention to endangered species in Africa. The main goal of this platform is to collaborate with local communities, conservation organizations, and specialists to promote sustainable wildlife conservation. Additionally, it encourages eco-tourism by actively involving people in conservation efforts. WildlifeEDU leverages digital technology and innovation to support various conservation projects, serving as a blueprint for future conservation efforts within similar ecosystems.
 
 ### Link to GitHub Repository
-[GitHub Repository](https://github.com/Mugisha-Beline/WildlifeEDU_Capstone.git)  
+[GitHub Repository](https://github.com/Mugisha-Beline/WildlifeEdu.git)  
 
 ---
 
@@ -28,7 +28,7 @@ Ensure you have the following installed on your machine:
 ### Installation Steps
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/Mugisha-Beline/WildlifeEDU_Capstone.git
+   git clone https://github.com/Mugisha-Beline/WildlifEdu.git
    cd WildlifeEDU_Capstone
    ```
 
