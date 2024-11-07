@@ -1,90 +1,112 @@
 # WildlifeEDU
 
-# WildlifeEDU: Let's Care for Our Wildlife Together
+## Let's Care for Our Wildlife Together
 
-## Description
-WildlifeEDU is an online animal conservation education-based website with special attention to endangered species in Africa. The main goal of this platform is to work with the local population, nature care institutions, and specialists for the purposes of sustainable conservation. In addition, it seeks to promote eco-tourism by involving people to conserve the wildlife. Using the digital technology and innovation, WildlifeEDU is engaged in the implementation of the wildlife conservation projects and it serves as a blueprint in the future wildlife conservation endeavors in the same ecosystems.
+### Description
+WildlifeEDU is an online education platform focused on animal conservation, with special attention to endangered species in Africa. The main goal of this platform is to collaborate with local communities, conservation organizations, and specialists to promote sustainable wildlife conservation. Additionally, it encourages eco-tourism by actively involving people in conservation efforts. WildlifeEDU leverages digital technology and innovation to support various conservation projects, serving as a blueprint for future conservation efforts within similar ecosystems.
 
-## Link to GitHub Repository
+### Link to GitHub Repository
 [GitHub Repository](https://github.com/Mugisha-Beline/WildlifeEDU_Capstone.git)  
 
-## How to Set Up the Environment and Project
+---
+
+## Tech Stack
+- **Frontend**: React.js
+- **Backend**: Django (Python), Stripe API for payment processing
+- **Database & Hosting**: Firebase for database and deployment of the frontend
+
+---
+
+## Setup and Installation Guide
 
 ### Prerequisites
 Ensure you have the following installed on your machine:
-- *Node.js* (for the backend)
-- *Python* (Django for the backend)
-- *MongoDB* (For database)
+- **Node.js** (for the frontend React app)
+- **Python** (for Django backend)
+- **Firebase CLI** (for deployment and database management)
 
 ### Installation Steps
-1. *Clone the Repository*  
-   bash
-   git clone <repository-url>
-   cd <repository-name>
-   
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Mugisha-Beline/WildlifeEDU_Capstone.git
+   cd WildlifeEDU_Capstone
+   ```
 
-2. *Install Dependencies*  
-   For a Node.js-based backend, run:  
-   bash
-   npm install
-     
-   For a Python-based backend, set up a virtual environment and install requirements:  
-   bash
-   python3 -m venv env
-   source env/bin/activate
-   pip install -r requirements.txt
-   
+2. **Install Dependencies**  
+   - For the React frontend, run:
+     ```bash
+     cd frontend
+     npm install
+     ```
+   - For the Django backend, create a virtual environment and install dependencies:
+     ```bash
+     cd backend
+     python3 -m venv env
+     source env/bin/activate
+     pip install -r requirements.txt
+     ```
 
-3. *Set Up Environment Variables*  
-   Create a .env file in the root directory and include the necessary API keys, database credentials, and environment-specific settings like:
-   bash
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USER=yourusername
-   DB_PASS=yourpassword
-   
+3. **Set Up Environment Variables**
+   - Create a `.env` file in both the frontend and backend directories to include necessary API keys, Firebase configurations, Stripe keys, and other environment-specific settings.
 
-4. *Database Setup*  
-   Create the necessary database tables by running the migrations or initializing the database schema:
-   bash
-   npm run db:migrate # for Node.js-based apps
-   python manage.py migrate # for Django apps
-   
+4. **Database Setup**
+   - Ensure Firebase is set up with Firestore, and configure your Firestore rules as needed.
 
-5. *Run the Application*  
-   To start the development server, run:  
-   bash
-   npm start # Node.js
-   python app.py # Django
-   
+5. **Run the Applications**
+   - Start the React frontend:
+     ```bash
+     cd frontend
+     npm start
+     ```
+   - Start the Django backend:
+     ```bash
+     cd backend
+     python manage.py runserver
+     ```
 
-6. *Access the Application*  
-   Open your browser and go to http://localhost:3000 (or another port as defined in your settings) to view the app.
+6. **Access the Application**
+   - Open your browser and go to `http://localhost:3000` for the frontend and `http://localhost:8000` for the backend to interact with the application.
 
-### Designs
-- *Figma Mockups*  
-   The designs for the platform can be accessed via this Figma link: [Figma Mockups](https://www.figma.com/design/BE9F2PnRlQDYmncrDeQkdR/Capstone-Project-Design?node-id=0-1&t=qyaXhublQVzqeQk3-1)  
+---
 
-### Deployment Plan
-The platform is built to be elastic and secure when implemented whether on the cloud or on premises. A brief summary of the deployment strategy is below:
+## Designs
+- **Figma Mockups**  
+  Access the design mockups for the platform here: [Figma Mockups](https://www.figma.com/design/BE9F2PnRlQDYmncrDeQkdR/Capstone-Project-Design?node-id=0-1&t=qyaXhublQVzqeQk3-1)
 
-1. *Docker Deployment*  
-   Create a Dockerfile and docker-compose.yml for multi-container deployments (backend, database).
-   bash
+---
+
+## Deployment Plan
+The platform is built to be flexible and secure, supporting both cloud and on-premises deployments. The deployment strategy includes:
+
+1. **Docker Deployment**
+   - Create a `Dockerfile` and `docker-compose.yml` to enable multi-container deployments (frontend, backend, database).
+   ```bash
    docker-compose up --build
-   
+   ```
 
-2. *Cloud Deployment*  
-   For cloud-based hosting, Heroku will be used.
-   - *AWS EC2*: Use an EC2 instance to run the app and configure security groups for API access.
-   - *RDS*: For database management, use AWS RDS for MongoDB Atlas.
-   - *Heroku*: For a quick and scalable deployment option, deploy the backend directly to Heroku and configure environment variables within the Heroku dashboard.
-   bash
-   git push heroku main
-   
+2. **Cloud Deployment**
+   - For cloud-based hosting, Firebase Hosting is used for the frontend. Configure Firebase using the Firebase CLI.
+   ```bash
+   firebase deploy
+   ```
+   - For the backend and database:
+     - **Heroku**: Deploy the Django backend to Heroku and configure environment variables within the Heroku dashboard.
+     - **Firebase Firestore**: Use Firebase Firestore for efficient and scalable data management.
 
-3. *Monitoring and Logging*  
-   Set up *CloudWatch* or *Stackdriver* to monitor application performance and log errors in real-time. This ensures the application runs smoothly post-deployment.
+3. **Monitoring and Logging**
+   - Configure Firebase Analytics for tracking and logging, and set up *Heroku Logs* to monitor backend performance and errors in real-time.
 
-4. *Final Deployment*  
-  Once the application has undergone local testing and all issues have been ironed out, the last phase will entail Adjusting domain settings and enabling Secure socket layer for the purposes of security communication.
+4. **Final Deployment**
+   - Once local testing is complete, configure the domain settings, add SSL for secure communication, and finalize deployment.
+
+---
+
+## Contributions
+Contributions to WildlifeEDU are welcome. To contribute:
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Submit a pull request for review.
+
+## License
+This project is open-source and available under the MIT License.
