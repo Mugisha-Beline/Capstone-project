@@ -125,14 +125,17 @@ const About = () => {
         <h2>What People Are Saying</h2>
         <div className="testimonial-cards">
           <div className="testimonial-card about-fade-in-left">
+          <img src="/person2.jpg" alt="Testimony" className="card-image" style={{ width: "120px", height: "120px" }} />
             <p>"WildlifeEDU is an amazing platform! I learned so much about conservation!"</p>
             <h4>- Alex N.</h4>
           </div>
           <div className="testimonial-card about-fade-in-up">
+          <img src="/person1.jpg" alt="Testimony" className="card-image" style={{ width: "120px", height: "120px" }} />
             <p>"The best place to connect and learn about our planet's wildlife."</p>
             <h4>- Linda M.</h4>
           </div>
           <div className="testimonial-card about-fade-in-right">
+          <img src="/person3.jpg" alt="Testimony" className="card-image" style={{ width: "120px", height: "120px" }} />
             <p>"A unique educational experience. WildlifeEDU truly cares for nature."</p>
             <h4>- John R.</h4>
           </div>
