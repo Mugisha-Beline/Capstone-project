@@ -192,7 +192,7 @@ const About = () => {
       </section>
 
       <section className="map-section about-fade-in-up">
-        <h2>Visit Us in Rwanda</h2>
+      <h2 style={{ color: 'white' }}>Visit Us in Rwanda</h2>
         <div className="map-container">
           <iframe
             title="Rwanda Map"

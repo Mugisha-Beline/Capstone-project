@@ -78,7 +78,7 @@ function ConservationCourse() {
 
     return (
         <div className="conservation-course">
-            <h1>Conservation Course</h1>
+            <h1 style={{ color: 'black' }}>Conservation Course</h1>
 
             {/* YouTube Link Section */}
             <section className="youtube-link-section" onClick={() => window.open('https://www.youtube.com/watch?v=qKgRbkCkRFY', '_blank')}>

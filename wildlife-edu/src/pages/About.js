@@ -24,12 +24,27 @@ const About = () => {
 
   return (
     <div className="Aboutus">
-      {/* Existing About Us content */}
       <div className="about about-fade-in-up">
-        {/* About Us Section */}
-        {/* Mission and Vision */}
-      </div>
-
+        <div>
+          <h1>About Us</h1>
+          <p className='p'>
+            Endangered Animals in Rwanda’s Akagera National Park is the particular focus of the study, and it will be undertaken in partnership with local communities, nature care organizations, as well as experts.
+          </p>
+        </div>
+        <img src="/elephants.jpg" alt="Mission" />
+        <div className="about-images">
+          <div className="about-image about-fade-in-left">
+            <h1>Our Mission</h1>
+            <p className='p'>We believe that education is the key to fostering a deeper understanding of wildlife.</p>
+            <img src="/zebra.jpg" alt="Mission" />
+          </div>
+          <div className="about-image about-fade-in-right">
+            <h1>Our Vision</h1>
+            <p className='p'>Join our community today and start your journey toward making a difference!</p>
+            <img src="/elephants.jpg" alt="Vision" />
+          </div>
+        </div>
+      </div> 
       {/* Call to Action Section */}
       <section className="call-to-action about-fade-in-up">
         <h2>Join Our Community</h2>
@@ -44,11 +59,11 @@ const About = () => {
         <div className="partners">
           <div className="partner">
             <img src="/partner1.jpg" alt="Partner 1" />
-            <Link to="/blog/1" className="read-more">Diana Fosel</Link>
+            <a href="https://www.newworldencyclopedia.org/entry/Dian_Fossey" className="read-more" target="_blank" rel="noopener noreferrer">Diana Fossey</a>
           </div>
           <div className="partner">
             <img src="/partner2.jpg" alt="Partner 2" />
-            <Link to="/RDB" className="read-more">RDB</Link>
+            <a href="https://rdb.rw/" className="read-more" target="_blank" rel="noopener noreferrer">RDB</a>
           </div>
           {/* Add more partner elements as needed */}
         </div>
