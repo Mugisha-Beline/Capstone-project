@@ -1,7 +1,7 @@
 /* src/pages/Home.css */
 
 body, .home {  
-  background-image: url('/background.jpg'); /* Update with the correct path */
+  background-image: url('../assets/images/background1.jpg'); /* Update with the correct path */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -21,7 +21,7 @@ body, .home {
   align-items: center;
   justify-content: center;
   height: 100vh; /* Full viewport height */
-  background-image: url('/background.jpg'); /* Update with your image path */
+  background-image: url('../assets/images/background.jpg'); /* Update with your image path */
   background-size: cover;
   text-align: center;
   padding: 100px 20px; /* Adjust as necessary */
