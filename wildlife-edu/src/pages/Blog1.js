@@ -1,36 +1,96 @@
-// Blog1.js: Conservation Blog Component
-import React from "react";
+// Blogs.js
+import React, { useState, useEffect } from "react";
+import { db, addPost, getPosts } from "./Firebase"; // Import Firebase functions
 import "./Blog1.css";
 
-function Blog1() {
+function Blogs() {
+    const [username, setUsername] = useState(""); // State for username input
+    const [message, setMessage] = useState("");  // State for message input
+    const [posts, setPosts] = useState([]);      // State for fetched posts
+
+    // Fetch posts from Firebase on component mount
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const fetchedPosts = await getPosts(); // Fetch posts from Firestore
+                setPosts(fetchedPosts);
+            } catch (error) {
+                console.error("Error fetching posts:", error.message);
+            }
+        };
+        fetchPosts();
+    }, []);
+
+    // Handle adding a new post
+    const handleAddPost = async () => {
+        if (username && message) {
+            const newPost = {
+                username,
+                message,
+                timestamp: new Date().toISOString(),
+            };
+            try {
+                await addPost(newPost); // Store post in Firestore
+                setPosts((prevPosts) => [newPost, ...prevPosts]); // Update local posts
+                setUsername(""); // Clear input fields
+                setMessage("");
+                alert("Post added successfully!");
+            } catch (error) {
+                console.error("Error adding post:", error.message);
+                alert("Failed to add post. Try again.");
+            }
+        } else {
+            alert("Please enter both username and message.");
+        }
+    };
+
     return (
-        <div className="blog">
-            <header className="blog-header">
-                <h1>Dian Fossey: A Legacy in Wildlife Conservation</h1>
-            </header>
-            <section className="blog-content">
+        <div className="blog-container">
+            <h1 className="blog-title">Dian Fossey: The Legacy of Conservation</h1>
+            <div className="blog-content">
                 <p>
-                    Dian Fossey, an iconic figure in wildlife conservation, devoted her life to the study and protection of mountain gorillas in Rwanda's Virunga Mountains. Her groundbreaking research and fierce advocacy transformed the world's understanding of these magnificent creatures and inspired a global movement to save endangered species.
+                    Dian Fossey was a renowned American primatologist and conservationist best known for her extensive study of mountain gorillas in Rwanda. Her dedication to their protection and her groundbreaking research left an indelible mark on conservation science.
+                </p>
+                <img src="kwita-izina.jpg" alt="Mountain Gorillas" className="blog-image" />
+                <p>
+                    Starting in the dense forests of Rwanda in the 1960s, Fossey's work documented the complex social behaviors of mountain gorillas, bringing their plight to global attention. Her life was tragically cut short, but her efforts paved the way for international conservation initiatives.
                 </p>
                 <p>
-                    Born on January 16, 1932, in San Francisco, Fossey initially trained as an occupational therapist but was drawn to Africa after a life-changing safari in the 1960s. During her expedition, she met renowned paleoanthropologists Louis and Mary Leakey, who encouraged her to study mountain gorillas, similar to Jane Goodall's work with chimpanzees.
+                    Dian Fossey’s legacy lives on through organizations like the Dian Fossey Gorilla Fund, ensuring that mountain gorillas continue to thrive. Her story remains an inspiration for anyone passionate about wildlife conservation.
                 </p>
-                <img src="/kwita-izina.jpg" alt="Mission" />
-                <p>
-                    Fossey established the Karisoke Research Center in 1967, deep in the Rwandan rainforest. Over the years, she developed unique methods of observing gorillas up close, breaking the barriers of fear between humans and these gentle giants. Her meticulous fieldwork uncovered critical insights into gorilla behavior, social structures, and their ecological importance.
-                </p>
-                <p>
-                    However, Fossey’s work was not without challenges. She faced threats from poachers and other illegal activities that endangered gorilla populations. Despite the dangers, she remained steadfast, fighting tirelessly to protect these animals. Her advocacy led to increased international attention on conservation issues and highlighted the urgent need for stricter anti-poaching measures.
-                </p>
-                <p>
-                    Tragically, Fossey's life was cut short in 1985 when she was murdered at her Rwandan cabin. Although her death remains shrouded in mystery, her legacy endures through her foundation, the Dian Fossey Gorilla Fund International, and the ongoing efforts to preserve mountain gorillas and their habitat.
-                </p>
-                <p>
-                    Dian Fossey's story is a testament to the power of determination and passion for conservation. Her work reminds us that protecting wildlife is not just an environmental necessity but a moral imperative to ensure the survival of our planet's most vulnerable species.
-                </p>
-            </section>
+            </div>
+
+            {/* Add Post Section */}
+            <div className="post-section">
+                <h2>Leave a Comment</h2>
+                <div className="post-form">
+                    <input
+                        type="text"
+                        placeholder="Your Name"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <textarea
+                        placeholder="Your Comment"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                    <button onClick={handleAddPost}>Submit</button>
+                </div>
+            </div>
+
+            {/* Display Posts Section */}
+            <div className="posts-list">
+                <h2>Comments</h2>
+                {posts.map((post, index) => (
+                    <div key={index} className="post-item">
+                        <strong>{post.username}</strong> - <span>{new Date(post.timestamp).toLocaleString()}</span>
+                        <p>{post.message}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
 
-export default Blog1;
+export default Blogs;
