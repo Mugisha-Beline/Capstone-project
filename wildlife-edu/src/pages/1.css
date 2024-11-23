@@ -78,33 +78,37 @@
     color: #555;
     margin-bottom: 10px;
 }
-/* Quiz Section */
+/* Responsive Quiz Section */
 .quiz-section {
     margin: 20px 0;
     padding: 20px;
     background-color: #f0f0f0;
     border-radius: 8px;
-    width: 100%; /* Make the quiz section span the full width */
-    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .quiz-question {
     margin-bottom: 15px;
-    color: black; /* Ensure the text is black */
     font-size: 18px;
-    width: 200%; /* Use full width for the question */
+    color: black;
+    padding-left: 10px; /* Add padding to align with options */
+}
+
+.quiz-question p {
+    color: #3C5916;
+    margin-bottom: 10px;
+    padding-left: 10px; /* Align with the options */
 }
 
 .quiz-option {
     display: block;
     margin-bottom: 10px;
     font-size: 16px;
-    color: black; /* Ensure the options text is black */
-    width: 200%; /* Use full width for options */
+    color: black;
+    padding-left: 20px; /* Indent options for better hierarchy */
 }
-.quiz-question p {
-    color: #3C5916;
-}
+
 .quiz-option input[type="radio"] {
     margin-right: 8px;
 }
@@ -117,8 +121,60 @@
     border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .submit-quiz:hover, .retry-quiz:hover {
-    background-color: #3C5916;
+    background-color: #2e4b11;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .quiz-section {
+        padding: 15px;
+    }
+
+    .quiz-question {
+        font-size: 16px;
+        padding-left: 5px; /* Adjust padding for smaller screens */
+    }
+
+    .quiz-question p {
+        padding-left: 5px; /* Adjust alignment for questions */
+    }
+
+    .quiz-option {
+        font-size: 14px;
+        padding-left: 15px; /* Maintain alignment with smaller margins */
+    }
+
+    .submit-quiz, .retry-quiz {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-section {
+        padding: 10px;
+    }
+
+    .quiz-question {
+        font-size: 14px;
+        padding-left: 0; /* Align with screen edge on very small screens */
+    }
+
+    .quiz-question p {
+        padding-left: 0; /* Match question margin with options */
+    }
+
+    .quiz-option {
+        font-size: 12px;
+        padding-left: 10px; /* Slight indent for small screens */
+    }
+
+    .submit-quiz, .retry-quiz {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
 }
